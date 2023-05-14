@@ -4,10 +4,10 @@
     <!-- Task List Heading -->
     <div class="row">
         <div class="col-md-6">
-            <h1>Task List</h1>
+            <h1>Seznam úkolů</h1>
         </div>
         <div class="col-md-6">
-            <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#addTaskModal">Add Task</a>
+            <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#addTaskModal">Přidat úkol</a>
         </div>
     </div>
 
@@ -15,9 +15,9 @@
     <table class="table mt-4">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Action</th>
+                <th>Název</th>
+                <th>Popis</th>
+                <th>Akce</th>
             </tr>
         </thead>
         <tbody>
@@ -26,12 +26,12 @@
                     <td>{{ $task->name }}</td>
                     <td>{{ $task->description }}</td>
                     <td>
-                        <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-sm btn-primary">View</a>
-                        <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                        <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-sm btn-primary">Zobrazit</a>
+                        <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-secondary">Upravit</a>
                         <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Odstranit</button>
                         </form>
                     </td>
                 </tr>
@@ -43,7 +43,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="addTaskModalLabel">Add New Task</h5>
+					<h5 class="modal-title" id="addTaskModalLabel">Přidat nový úkol</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -52,15 +52,15 @@
 					<form action="{{ route('tasks.store') }}" method="POST">
 						@csrf
 						<div class="form-group">
-							<label for="name">Name</label>
+							<label for="name">Název</label>
 							<input type="text" class="form-control" id="name" name="name" required>
 						</div>
 						<div class="form-group">
-							<label for="description">Description</label>
+							<label for="description">Popis</label>
 							<textarea class="form-control" id="description" name="description" rows="3" required></textarea>
 						</div>
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
-						<button type="submit" class="btn btn-primary">Add Task</button>
+						<button type="submit" class="btn btn-primary">Uložit</button>
 					</form>
 				</div>
 			</div>

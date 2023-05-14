@@ -20,7 +20,7 @@
                     <a class="nav-link" href="/dashboard">Přehled</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Projekty</a>
+                    <a class="nav-link" href="/projects">Projekty</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('tasks') }}">Úkoly</a>
@@ -33,11 +33,11 @@
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('user.settings') }}">Settings</a>
+                        <a class="dropdown-item" href="{{ route('user.settings') }}">Nastavení</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        Logout
+                        Odhlásit
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
@@ -49,7 +49,7 @@
     </nav>
 
 
-    <div class="container">
+    <div class="container py-3">
         @yield('content')
     </div>
 

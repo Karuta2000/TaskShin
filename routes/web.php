@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 
@@ -53,7 +54,7 @@ Route::get('/', function () {
     if (Auth::check()) {
         return redirect('/dashboard');
     }
-    return view('welcome');
+    return view('homepage');
 });
 
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
@@ -69,3 +70,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/settings', [UserController::class, 'showSettings'])->name('user.settings');
     Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
 });
+
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
+
+Route::get('/projects/create',  [ProjectController::class, 'create'])->name('projects.create');
+Route::post('/projects',  [ProjectController::class, 'store'])->name('projects.store');
+Route::get('/projects/{project}',  [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/projects/{project}/edit',  [ProjectController::class, 'edit'])->name('projects.edit');
+Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
+Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
