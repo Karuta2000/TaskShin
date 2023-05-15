@@ -17,10 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Přehled</a>
+                    <a class="nav-link" href="{{ route('dashboard') }}">Přehled</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/projects">Projekty</a>
+                    <a class="nav-link" href="{{ route('projects') }}">Projekty</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('tasks') }}">Úkoly</a>
