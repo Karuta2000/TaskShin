@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'user_id'];
+    protected $fillable = ['name', 'description', 'user_id', 'color'];
 
     protected $primaryKey = 'id';
 
@@ -25,5 +25,9 @@ class Project extends Model
 
     public function tasks(){
         return $this->hasMany(Task::class);
+    }
+
+    public function notes(){
+        return $this->hasMany(Note::class);
     }
 }

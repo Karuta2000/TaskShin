@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Color;
 
 use App\Models\Project;
 
@@ -19,7 +20,8 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('projects.create');
+        $colors = Color::all();
+        return view('projects.create', compact('colors'));
     }
 
     public function store(Request $request)
@@ -28,6 +30,7 @@ class ProjectController extends Controller
             'name' => 'required|max:255',
             'description' => 'nullable',
             'user_id' => 'required|integer',
+            'color' => 'nullable'
         ]);
 
         $project = Project::create($validatedData);
@@ -52,6 +55,7 @@ class ProjectController extends Controller
             'name' => 'required|max:255',
             'description' => 'nullable',
             'user_id' => 'required|integer',
+            'color' => 'nullable'
         ]);
 
         $project->update($validatedData);

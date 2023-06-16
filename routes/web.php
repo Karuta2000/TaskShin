@@ -8,6 +8,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,7 @@ Route::get('/tasks/{task}',  [TaskController::class, 'show'])->name('tasks.show'
 Route::get('/tasks/{task}/edit',  [TaskController::class, 'edit'])->name('tasks.edit');
 Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
 Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::put('/tasks/{task}/update-status', [TaskController::class, 'complete'])->name('tasks.complete');
 
 Route::middleware('auth')->group(function () {
     Route::get('/user/settings', [UserController::class, 'showSettings'])->name('user.settings');
@@ -79,3 +81,12 @@ Route::get('/projects/{project}',  [ProjectController::class, 'show'])->name('pr
 Route::get('/projects/{project}/edit',  [ProjectController::class, 'edit'])->name('projects.edit');
 Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+
+
+Route::get('/notes', [NoteController::class, 'index'])->name('notes');
+Route::get('/notes/create',  [NoteController::class, 'create'])->name('notes.create');
+Route::post('/notes',  [NoteController::class, 'store'])->name('notes.store');
+Route::get('/notes/{note}',  [NoteController::class, 'show'])->name('notes.show');
+Route::get('/notes/{note}/edit',  [NoteController::class, 'edit'])->name('notes.edit');
+Route::put('/notes/{note}', [NoteController::class, 'update'])->name('notes.update');
+Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->name('notes.destroy');

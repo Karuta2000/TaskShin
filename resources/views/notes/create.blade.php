@@ -5,15 +5,15 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="card">
-                    <div class="card-header">{{ __('Nový projekt') }}</div>
+                    <div class="card-header">{{ __('Nová poznámka') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('projects.store') }}">
+                        <form method="POST" action="{{ route('notes.store') }}">
                             @csrf
 
                             <div class="form-group">
-                                <label for="name">{{ __('Název') }}</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <label for="title">{{ __('Název') }}</label>
+                                <input id="title" type="text" class="form-control @error('name') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -23,10 +23,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="description">{{ __('Popis') }}</label>
-                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description">{{ old('description') }}</textarea>
+                                <label for="body">{{ __('Text') }}</label>
+                                <textarea id="body" class="form-control @error('body') is-invalid @enderror" name="body">{{ old('body') }}</textarea>
 
-                                @error('description')
+                                @error('body')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -43,6 +43,14 @@
                                     <input id="colorOfProject" type="hidden" name="color" value="{{ $color->HEX }}">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="project_id" class="form-label">Projekt</label>
+                                <select class="form-control" name="project_id" id="project_id">
+                                    @foreach ($projects as $project)
+                                        <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             
 
@@ -57,7 +65,7 @@
     </div>
 
 <script>
-    function changeColor(color, ){
+    function changeColor(color){
         inp = document.getElementById("colorOfProject");
         inp.value = color;
     }

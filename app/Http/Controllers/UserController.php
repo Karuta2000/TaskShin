@@ -27,10 +27,13 @@ class UserController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'profile_photo_path' => 'nullable',
+            'password' => ['nullable', 'string', 'min:8', 'confirmed']
         ]);
 
         $user->name = $request->name;
+
+        $user->profile_photo_path = $request->profile_photo_path;
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);

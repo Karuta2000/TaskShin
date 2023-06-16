@@ -1,0 +1,43 @@
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    border-color: #198754;
+    background-color: #198754;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.note {
+    text-decoration: none;
+    transition: 0.5s;
+    height: 250px;
+    width: 250px;
+}
+
+.note:hover {
+    transform: scale(1.1);
+}
+
+.custom-link {
+    color: inherit; /* Inherits the color from its parent */
+    text-decoration: none; /* Removes underline on the link */
+  }
+
+  .custom-link:hover {
+    color: inherit; /* Inherits the color from its parent */
+    text-decoration: none; /* Removes underline on the link */
+
+  }

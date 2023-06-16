@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::where('user_id', Auth::id())->get();
-        return view('tasks', compact('tasks'));
+        $projects = Project::all();
+        $tasks = Task::where('user_id', Auth::id())->orderBy('completed', 'asc')->get();
+        return view('tasks/index', compact('tasks', 'projects'));
     }
 
     public function create()
@@ -24,13 +26,15 @@ class TaskController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required',
+            'description' => 'nullable',
+            'due' => 'nullable',
+            'project_id' => 'nullable',
             'user_id' => 'required'
         ]);
 
         $task = Task::create($validatedData);
 
-        return redirect()->route('tasks.show', $task->id);
+        return back();
     }
 
     public function show(Task $task)
@@ -44,10 +48,19 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task'));
     }
 
+    public function complete(Request $request, Task $task)
+    {
+        $task->completed = $request->has('completed');
+        $task->save();
+
+        return back();
+    }
+
     public function update(Request $request, Task $task)
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
+            'project_id' => 'nullable',
             'description' => 'required',
         ]);
 
@@ -61,5 +74,11 @@ class TaskController extends Controller
         $task->delete();
 
         return redirect()->route('tasks');
+    }
+
+    public function displayModal(Task $task)
+    {
+        $projects = Project::all();
+        return view('compotents.tasks.modal', compact('task', 'projects'))->render();
     }
 }
