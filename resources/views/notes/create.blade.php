@@ -5,7 +5,9 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="card">
-                    <div class="card-header">{{ __('Nová poznámka') }}</div>
+                    <div class="card-header bg-dark">
+                        <h2 class="m-0 text-light">{{ __('Nová poznámka') }}</h2>
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('notes.store') }}">
@@ -13,7 +15,9 @@
 
                             <div class="form-group">
                                 <label for="title">{{ __('Název') }}</label>
-                                <input id="title" type="text" class="form-control @error('name') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="name" autofocus>
+                                <input id="title" type="text"
+                                    class="form-control @error('name') is-invalid @enderror" name="title"
+                                    value="{{ old('title') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -33,16 +37,22 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <div class="row">
-                                    @foreach ($colors as $color)
-                                    <div class="col-1">
-                                        <div id="color{{$color->id}}" style="height: 50px; width: 50px; background-color: #{{ $color->HEX }}; border: 1px black solid; cursor: pointer"
-                                            onclick="changeColor('{{ $color->HEX }}')"></div>
+                                <div class="square-radio px-3">
+                                    <div class="row">
+                                        @foreach ($colors as $color)
+                                            <div class="col-1">
+                                                <input class="form-check-input" type="radio" name="color"
+                                                    value="{{ $color->HEX }}"
+                                                    {{ $color->HEX == 'FFFFFF' ? 'checked' : '' }}
+                                                    style="background-color: #{{ $color->HEX }}" required>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
-                                    <input id="colorOfProject" type="hidden" name="color" value="{{ $color->HEX }}">
+
                                 </div>
                             </div>
+
+
                             <div class="form-group">
                                 <label for="project_id" class="form-label">Projekt</label>
                                 <select class="form-control" name="project_id" id="project_id">
@@ -52,7 +62,7 @@
                                 </select>
                             </div>
 
-                            
+
 
                             <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
                             <button type="submit" class="btn btn-primary">{{ __('Uložit') }}</button>
@@ -64,10 +74,10 @@
         </div>
     </div>
 
-<script>
-    function changeColor(color){
-        inp = document.getElementById("colorOfProject");
-        inp.value = color;
-    }
-</script>
+    <script>
+        function changeColor(color) {
+            inp = document.getElementById("colorOfProject");
+            inp.value = color;
+        }
+    </script>
 @endsection

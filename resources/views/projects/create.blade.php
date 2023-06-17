@@ -33,14 +33,17 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <div class="row">
-                                    @foreach ($colors as $color)
-                                    <div class="col-1">
-                                        <div id="color{{$color->id}}" style="height: 50px; width: 50px; background-color: #{{ $color->HEX }}; border: 1px black solid; cursor: pointer"
-                                            onclick="changeColor('{{ $color->HEX }}')"></div>
+                                <div class="square-radio px-3">
+                                    <div class="row">
+                                        @foreach ($colors as $color)
+                                            <div class="col-1">
+                                                <input class="form-check-input" type="radio" name="color"
+                                                    value="{{ $color->HEX }}" {{ ($color->HEX == 'FFFFFF') ? 'checked' : '' }}
+                                                    style="background-color: #{{ $color->HEX }}" required>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
-                                    <input id="colorOfProject" type="hidden" name="color" value="{{ $color->HEX }}">
+
                                 </div>
                             </div>
 

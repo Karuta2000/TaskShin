@@ -36,7 +36,9 @@ class NoteController extends Controller
 
         $note = Note::create($validatedData);
 
-        return back();
+        return redirect()->route('notes');
+
+
     }
     public function edit(Note $note)
     {
@@ -51,10 +53,13 @@ class NoteController extends Controller
             'title' => 'required|max:255',
             'body' => 'nullable',
             'user_id' => 'required|integer',
+            'project_id' => 'required|integer',
             'color' => 'nullable'
         ]);
 
         $note->update($validatedData);
+
+        $twoPagesBackUrl = url()->previous(2);
 
         return redirect()->route('notes');
     }

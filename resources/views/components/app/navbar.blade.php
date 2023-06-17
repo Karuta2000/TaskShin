@@ -1,4 +1,4 @@
-<nav class="navbar shadow navbar-expand-lg navbar-light bg-light">
+<nav class="navbar shadow navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{{ route('dashboard') }}"><img
             src="https://cdn-icons-png.flaticon.com/512/671/671164.png" width="30" height="30"
             class="d-inline-block align-top" alt=""></a>

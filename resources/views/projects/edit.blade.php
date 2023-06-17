@@ -32,6 +32,21 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <div class="square-radio px-3">
+                                    <div class="row">
+                                        @foreach ($colors as $color)
+                                            <div class="col-1">
+                                                <input class="form-check-input" type="radio" name="color"
+                                                    value="{{ $color->HEX }}" {{ ($color->HEX == 'FFFFFF') ? 'checked' : '' }}
+                                                    style="background-color: #{{ $color->HEX }}" required>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+                            </div>
+
                             <input type="hidden" id="user_id" name="user_id" value="{{ $project->user_id }}">
                             <button type="submit" class="btn btn-primary">{{ __('Update Project') }}</button>
                             <a href="{{ route('projects.show', $project->id) }}" class="btn btn-secondary">{{ __('Cancel') }}</a>

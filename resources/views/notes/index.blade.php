@@ -2,24 +2,31 @@
 
 
 @section('content')
-    <div class="row mb-3 p-3">
-        <div class="col">
-            <h1>Vaše poznámky</h1>
-        </div>
-        <div class="col-md-6">
-            <a href="{{ route('notes.create') }}" class="btn btn-primary float-right">Nová poznámka</a>
-        </div>
+<h1>Poznámky</h1>
+    <div class="p-2 shadow-sm rounded bg-dark my-3">
+        <a href="{{ route('notes.create') }}" class="btn btn-light">Nová poznámka</a>
     </div>
 
-    <div class="row">
+    <div class="row py-3">
         @foreach ($notes as $note)
             <div class="col-lg-2 col-md-6 col-sm-12">
                 <a class="text-decoration-none custom-link" href="{{ route('notes.edit', $note->id) }}">
-                    <div class="card rounded note p-3 shadow-lg mb-5 mx-auto"
-                        style="background-color: #{{ $note->color }}">
-                        <h5 class="card-title">{{ $note->title }}</h5>
-                        <p class="card-body p-0"> {{ Illuminate\Support\Str::limit($note->body, 160, '...') }}
-                        </p>
+                    <div class="card note rounded shadow mb-5 mx-auto"
+                        style="height: 250px; width: 250px; background-color: #{{ $note->color }}">
+                        <div class="card-body p-3">
+                            <h5 class="card-title">{{ $note->title }}</h5>
+                            <p class="card-body p-0">
+                                {{ Illuminate\Support\Str::limit($note->body, 118, '...') }}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            @if($note->project != null)
+                            {{ $note->lastUpdate() }} | {{ $note->project->name }}
+                            @else
+                            {{ $note->lastUpdate() }} | Bez projektu
+                            @endif
+                        </div>
+
                     </div>
                 </a>
 

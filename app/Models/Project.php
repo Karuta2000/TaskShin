@@ -13,13 +13,15 @@ class Project extends Model
 
     protected $primaryKey = 'id';
 
+    protected $with = ['tags'];
 
     protected $atributes = [
         'name' => 'New project'
     ];
 
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -27,7 +29,25 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
-    public function notes(){
+    public function activeTasks()
+    {
+        $tasks = $this->tasks();
+        return $tasks->where('completed', 0);
+    }
+
+    public function closedTasks()
+    {
+        $tasks = $this->tasks();
+        return $tasks->where('completed', 1);
+    }
+
+    public function notes()
+    {
         return $this->hasMany(Note::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

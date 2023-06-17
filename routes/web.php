@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,3 +91,16 @@ Route::get('/notes/{note}',  [NoteController::class, 'show'])->name('notes.show'
 Route::get('/notes/{note}/edit',  [NoteController::class, 'edit'])->name('notes.edit');
 Route::put('/notes/{note}', [NoteController::class, 'update'])->name('notes.update');
 Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->name('notes.destroy');
+
+Route::get('/tags', [TagController::class, 'index'])->name('tags');
+Route::get('/tags/create',  [TagController::class, 'create'])->name('tags.create');
+Route::post('/tags',  [TagController::class, 'store'])->name('tags.store');
+Route::get('/tags/{tag}',  [TagController::class, 'show'])->name('tags.show');
+Route::get('/tags/{tag}/edit',  [TagController::class, 'edit'])->name('tags.edit');
+Route::put('/tags/{tag}', [TagController::class, 'update'])->name('tags.update');
+Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
+
+Route::get('/back', function () {
+    $previousUrl = url()->previous();
+    return redirect($previousUrl);
+})->name('return');

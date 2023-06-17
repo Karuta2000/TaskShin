@@ -13,8 +13,9 @@ class TaskController extends Controller
     public function index()
     {
         $projects = Project::all();
-        $tasks = Task::where('user_id', Auth::id())->orderBy('completed', 'asc')->get();
-        return view('tasks/index', compact('tasks', 'projects'));
+        $activeTasks = Task::where('user_id', Auth::id())->where('completed', 0)->get();
+        $closedTasks = Task::where('user_id', Auth::id())->where('completed', 1)->get();
+        return view('tasks/index', compact('activeTasks', 'closedTasks', 'projects'));
     }
 
     public function create()
@@ -73,7 +74,7 @@ class TaskController extends Controller
     {
         $task->delete();
 
-        return redirect()->route('tasks');
+        return back();
     }
 
     public function displayModal(Task $task)

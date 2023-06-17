@@ -35,18 +35,19 @@ class ProjectController extends Controller
 
         $project = Project::create($validatedData);
 
-        return redirect()->route('projects.show', $project->id);
+        return redirect()->route('projects.show', $project->id)->with('success', 'Projekt byl úspěšně vytvořen!');
     }
 
     public function show(Project $project)
     {
-
         return view('projects.show', compact('project'));
+
     }
 
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $colors = Color::all();
+        return redirect()->route('projects.show', $project->id)->with('success', 'Projekt byl úspěšně upraven!');
     }
 
     public function update(Request $request, Project $project)
