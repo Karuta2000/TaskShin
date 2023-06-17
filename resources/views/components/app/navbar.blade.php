@@ -20,6 +20,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('notes') }}">Poznámky</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('tags') }}">Tagy</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">

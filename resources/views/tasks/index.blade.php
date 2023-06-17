@@ -2,156 +2,170 @@
 
 @section('content')
     <h1>Úkoly</h1>
-    <div class="p-2 shadow-lg rounded bg-dark my-2">
+    <div class="p-2 shadow-lg rounded bg-dark mb-3">
         <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTaskModal">Nový úkol</a>
     </div>
 
 
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item shadow-sm">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Aktivní úkoly ({{ $activeTasks->count() }})
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-end text-nowrap" style="width: 50px;"></th>
+                                <th>Name</th>
+                                <th>Project</th>
+                                <th>Due Date</th>
+                                <th class="text-end text-nowrap" style="width: 50px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($activeTasks as $task)
+                                <tr class="{{ $task->completed ? 'completed' : '' }}">
+                                    <td>
+                                        <div class="form-check">
+                                            <form action="{{ route('tasks.complete', $task->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="checkbox" class="custom-control-input"
+                                                    onchange="this.form.submit()" name="completed"
+                                                    {{ $task->completed ? 'checked' : '' }}
+                                                    id="task{{ $task->id }}Checkbox">
+                                                <label class="custom-control-label"
+                                                    for="task{{ $task->id }}Checkbox"></label>
+                                            </form>
+                                        </div>
 
 
-    <div class="card shadow mb-4">
-        <div class="card-header">
-            <h2>Aktivní úkoly ({{ $activeTasks->count() }})</h2>
+                                    </td>
+                                    <td>{{ $task->name }}</td>
+                                    <td>
+                                        @if ($task->project != null)
+                                            {{ $task->project->name }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $task->due }}</td>
+
+                                    <td class="text-end" style="width: 50px;">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link dropdown-toggle" type="button"
+                                                id="task{{ $task->id }}Actions" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions">
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('tasks.show', $task->id) }}">Zobrazit</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('tasks.edit', $task->id) }}">Upravit</a>
+                                                </li>
+                                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <li><button type="submit" class="dropdown-item"
+                                                            href="#">Odstranit</a></button>
+                                                </form>
+
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="card-body p-0">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="text-end text-nowrap" style="width: 50px;"></th>
-                        <th>Name</th>
-                        <th>Project</th>
-                        <th>Due Date</th>
-                        <th>Tags</th>
-                        <th class="text-end text-nowrap" style="width: 50px;"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($activeTasks as $task)
-                        <tr class="{{ $task->completed ? 'completed' : '' }}">
-                            <td>
-                                <div class="form-check">
-                                    <form action="{{ route('tasks.complete', $task->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="checkbox" class="custom-control-input" onchange="this.form.submit()"
-                                            name="completed" {{ $task->completed ? 'checked' : '' }}
-                                            id="task{{ $task->id }}Checkbox">
-                                        <label class="custom-control-label" for="task{{ $task->id }}Checkbox"></label>
-                                    </form>
-                                </div>
+        <div class="accordion-item shadow-sm">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Uzavřené úkoly ({{ $closedTasks->count() }})
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-end text-nowrap" style="width: 50px;"></th>
+                                <th>Name</th>
+                                <th>Project</th>
+                                <th>Due Date</th>
+                                <th class="text-end text-nowrap" style="width: 50px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($closedTasks as $task)
+                                <tr class="{{ $task->completed ? 'completed' : '' }}">
+                                    <td>
+                                        <div class="form-check">
+                                            <form action="{{ route('tasks.complete', $task->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="checkbox" class="custom-control-input"
+                                                    onchange="this.form.submit()" name="completed"
+                                                    {{ $task->completed ? 'checked' : '' }}
+                                                    id="task{{ $task->id }}Checkbox">
+                                                <label class="custom-control-label"
+                                                    for="task{{ $task->id }}Checkbox"></label>
+                                            </form>
+                                        </div>
 
 
-                            </td>
-                            <td>{{ $task->name }}</td>
-                            <td>
-                                @if ($task->project != null)
-                                    {{ $task->project->name }}
-                                @endif
-                            </td>
-                            <td>{{ $task->due }}</td>
-                            <td></td>
+                                    </td>
+                                    <td>{{ $task->name }}</td>
+                                    <td>
+                                        @if ($task->project != null)
+                                            {{ $task->project->name }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $task->due }}</td>
 
-                            <td class="text-end" style="width: 50px;">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-link dropdown-toggle" type="button"
-                                        id="task{{ $task->id }}Actions" data-bs-toggle="dropdown" aria-expanded="false">
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions">
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('tasks.show', $task->id) }}">Zobrazit</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('tasks.edit', $task->id) }}">Upravit</a>
-                                        </li>
-                                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <li><button type="submit" class="dropdown-item"
-                                                    href="#">Odstranit</a></button>
-                                        </form>
+                                    <td class="text-end" style="width: 50px;">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link dropdown-toggle" type="button"
+                                                id="task{{ $task->id }}Actions" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions">
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('tasks.show', $task->id) }}">Zobrazit</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('tasks.edit', $task->id) }}">Upravit</a></li>
+                                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <li><button type="submit" class="dropdown-item"
+                                                            href="#">Odstranit</a></button>
+                                                </form>
 
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-
     </div>
 
 
 
-    <div class="card shadow">
-        <div class="card-header">
-            <h2>Hotové úkoly</h2>
-        </div>
-        <div class="card-body p-0">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="text-end text-nowrap" style="width: 50px;"></th>
-                        <th>Name</th>
-                        <th>Project</th>
-                        <th>Due Date</th>
-                        <th>Tags</th>
-                        <th class="text-end text-nowrap" style="width: 50px;"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($closedTasks as $task)
-                        <tr class="{{ $task->completed ? 'completed' : '' }}">
-                            <td>
-                                <div class="form-check">
-                                    <form action="{{ route('tasks.complete', $task->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="checkbox" class="custom-control-input" onchange="this.form.submit()"
-                                            name="completed" {{ $task->completed ? 'checked' : '' }}
-                                            id="task{{ $task->id }}Checkbox">
-                                        <label class="custom-control-label" for="task{{ $task->id }}Checkbox"></label>
-                                    </form>
-                                </div>
 
 
-                            </td>
-                            <td>{{ $task->name }}</td>
-                            <td>
-                                @if ($task->project != null)
-                                    {{ $task->project->name }}
-                                @endif
-                            </td>
-                            <td>{{ $task->due }}</td>
-                            <td></td>
-
-                            <td class="text-end" style="width: 50px;">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-link dropdown-toggle" type="button"
-                                        id="task{{ $task->id }}Actions" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions">
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('tasks.show', $task->id) }}">Zobrazit</a></li>
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('tasks.edit', $task->id) }}">Upravit</a></li>
-                                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <li><button type="submit" class="dropdown-item"
-                                                    href="#">Odstranit</a></button>
-                                        </form>
-
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
 
 
 

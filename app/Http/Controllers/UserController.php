@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,6 +15,16 @@ class UserController extends Controller
         return view('users.settings');
     }
 
+    public function dashboard(){
+        
+
+        if (Auth::check()) {
+            $tags = Tag::all();
+            return view('dashboard', compact('tags'));
+        }
+        return view('homepage');
+        
+    }
     /**
      * Update the user's name and password.
      *

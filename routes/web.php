@@ -46,18 +46,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 });
 
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect('/dashboard');
-    }
-    return view('homepage');
-});
+Route::get('/', [UserController::class, 'dashboard']);
 
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
 
@@ -99,6 +92,8 @@ Route::get('/tags/{tag}',  [TagController::class, 'show'])->name('tags.show');
 Route::get('/tags/{tag}/edit',  [TagController::class, 'edit'])->name('tags.edit');
 Route::put('/tags/{tag}', [TagController::class, 'update'])->name('tags.update');
 Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
+
+Route::post('/tags/{project}',  [TagController::class, 'attachTagsToProject'])->name('tags.attachToProject');
 
 Route::get('/back', function () {
     $previousUrl = url()->previous();

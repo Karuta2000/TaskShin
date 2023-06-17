@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Color;
-
+use App\Models\Tag;
 use App\Models\Project;
 
 
@@ -40,7 +40,8 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        return view('projects.show', compact('project'));
+        $tags = Tag::all();
+        return view('projects.show', compact('project', 'tags'));
 
     }
 

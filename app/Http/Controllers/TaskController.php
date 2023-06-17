@@ -35,7 +35,7 @@ class TaskController extends Controller
 
         $task = Task::create($validatedData);
 
-        return back();
+        return redirect()->route('tasks')->with('success', 'Projekt byl úspěšně upraven!');
     }
 
     public function show(Task $task)
@@ -62,12 +62,12 @@ class TaskController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'project_id' => 'nullable',
-            'description' => 'required',
+            'description' => 'nullable',
         ]);
 
         $task->update($validatedData);
 
-        return redirect()->route('tasks.show', $task->id);
+        return redirect()->route('tasks')->with('success', 'Úkol byl úspěšně upraven!');
     }
 
     public function destroy(Task $task)
