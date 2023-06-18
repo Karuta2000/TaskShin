@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Task;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::where('user_id', Auth::id());
 
         return view('tags.index', compact('tags'));
     }

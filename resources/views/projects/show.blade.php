@@ -31,7 +31,11 @@
             </div>
 
             <div class="card p-3 mb-3 shadow rounded">
+                @isset($project->description)
                 {{ $project->description }}
+                @else
+                Bez popisku
+                @endisset
             </div>
 
             <div class="row">
@@ -58,7 +62,7 @@
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body p-0">
-                            <table class="table table-striped">
+                            <table class="table table-striped m-0">
                                 <thead>
                                     <tr>
                                         <th class="text-end text-nowrap" style="width: 50px;"></th>

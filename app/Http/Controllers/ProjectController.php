@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Color;
 use App\Models\Tag;
 use App\Models\Project;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::with('tasks')->get();
+        $projects = Project::with('tasks')->where('user_id', Auth::id())->get();
 
         return view('projects.index', compact('projects'));
     }
@@ -40,15 +40,14 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        $tags = Tag::all();
+        $tags = Tag::where('user_id', Auth::id());
         return view('projects.show', compact('project', 'tags'));
-
     }
 
     public function edit(Project $project)
     {
         $colors = Color::all();
-        return redirect()->route('projects.show', $project->id)->with('success', 'Projekt byl úspěšně upraven!');
+        return view('projects.edit', compact('project', 'colors'));
     }
 
     public function update(Request $request, Project $project)
@@ -70,5 +69,13 @@ class ProjectController extends Controller
         $project->delete();
 
         return redirect()->route('projects');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $projects = Project::where('name', 'LIKE', '%' . $keyword . '%')->get();
+
+        return response()->json($projects);
     }
 }

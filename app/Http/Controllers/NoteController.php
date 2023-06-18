@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\Color;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller
 {
     public function index()
     {
-        $notes = Note::all();
+        $notes = Note::where('user_id', Auth::id());
 
         return view('notes.index', compact('notes'));
     }
@@ -20,7 +21,7 @@ class NoteController extends Controller
     public function create()
     {
         $colors = Color::all();
-        $projects = Project::all();
+        $projects = Project::where('user_id', Auth::id());
         return view('notes.create', compact('colors', 'projects'));
     }
 
@@ -43,7 +44,7 @@ class NoteController extends Controller
     public function edit(Note $note)
     {
         $colors = Color::all();
-        $projects = Project::all();
+        $projects = Project::where('user_id', Auth::id());
         return view('notes.edit', compact('note', 'colors', 'projects'));
     }
 

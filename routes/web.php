@@ -76,6 +76,8 @@ Route::get('/projects/{project}/edit',  [ProjectController::class, 'edit'])->nam
 Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
+Route::get('/projects/search', 'ProjectController@search')->name('projects.search');
+
 
 Route::get('/notes', [NoteController::class, 'index'])->name('notes');
 Route::get('/notes/create',  [NoteController::class, 'create'])->name('notes.create');
