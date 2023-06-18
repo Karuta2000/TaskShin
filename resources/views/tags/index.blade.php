@@ -65,9 +65,19 @@
                             <label for="name">Název</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
-                        <div class="form-group">
-                            <label for="name">Barva</label>
-                            <input type="text" class="form-control" id="color" name="color" required>
+                        <div class="form-group mx-2">
+                            <div class="square-radio px-3">
+                                <div class="row">
+                                    @foreach ($colors as $color)
+                                        <div class="col-lg-2 col-md-4 col-6 mb-2">
+                                            <input class="form-check-input" type="radio" name="color"
+                                                value="{{ $color->HEX }}" {{ ($color->HEX == 'FFFFFF') ? 'checked' : '' }}
+                                                style="background-color: #{{ $color->HEX }}" required>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </div>
                         </div>
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
                         <button type="submit" class="btn btn-primary">Uložit</button>

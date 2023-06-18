@@ -66,6 +66,14 @@
                             <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
                             <button type="submit" class="btn btn-primary">{{ __('Uložit') }}</button>
                             <a href="{{ route('return') }}" class="btn btn-secondary">{{ __('Zrušit') }}</a>
+
+                            
+                        </form>
+                        <hr>
+                        <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">{{ __('Odstranit') }}</button>
                         </form>
                     </div>
                 </div>

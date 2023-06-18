@@ -7,20 +7,22 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Task;
 use App\Models\Project;
+use App\Models\Color;
 use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::where('user_id', Auth::id());
-
-        return view('tags.index', compact('tags'));
+        $tags = Tag::where('user_id', Auth::id())->get();
+        $colors = Color::all();
+        return view('tags.index', compact('tags', 'colors'));
     }
 
     public function create()
     {
-        return view('tags.create');
+        $colors = Color::all();
+        return view('tags.create', compact('colors'));
     }
 
     public function store(Request $request)
@@ -32,7 +34,8 @@ class TagController extends Controller
 
         $tag = new Tag();
         $tag->name = $request->name;
-        $tag->color= $request->color;
+        $color = substr($request->color, 1);
+        $tag->color= $color;
         $tag->user_id = $request->user_id;
         $tag->save();
 
@@ -41,7 +44,8 @@ class TagController extends Controller
 
     public function edit(Tag $tag)
     {
-        return view('tags.edit', compact('tag'));
+        $colors = Color::all();
+        return view('tags.edit', compact('tag', 'colors'));
     }
 
     public function update(Request $request, Tag $tag)

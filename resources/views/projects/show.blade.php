@@ -27,7 +27,7 @@
                     <a class="btn badge p-2 text-light shadow-sm" style="background-color: #{{ $tag->color }}">{{ $tag->name }}</a>
                 @endforeach        
                 <a class="btn badge bg-primary p-2 text-light shadow-sm" data-toggle="modal"
-                    data-target="#addTagModal">+</a>
+                    data-target="#addTagModal">Nastavit tagy</a>
             </div>
 
             <div class="card p-3 mb-3 shadow rounded">

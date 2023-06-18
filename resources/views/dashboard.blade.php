@@ -2,7 +2,6 @@
 
 @section('content')
     <h1>Dashboard</h1>
-    <p>Zde jsou důležité informace</p>
     <div class="card">
         <div class="card-header bg-dark text-light">
             <h2>Nejnovější projekty</h2>
@@ -17,39 +16,57 @@
         </div>
     </div>
 
+    
 
-    <div class="row mt-4">
-        <div class="col-md-8 offset-md-2">
-            <h1>Dashboard ve vývoji</h1>
-            <p>Zde bude pěkný dashboard v několika příštích dnech</p>
-            <canvas class="w-50" id="tagChart"></canvas>
+    
+
+
+    <div class="container-fluid row mt-4">
+        <div class="col-md-4 col-sm-10 mx-auto">
+            <h1>Statistika tagů</h1>
+            <canvas id="tagChart" width="400" height="400"></canvas>
+        </div>
+        <div class="col-md-4 col-sm-10 mx-auto">
+            <h1>Přehled úkolů</h1>
+            <canvas id="taskChart" width="400" height="400"></canvas>
         </div>
     </div>
 
 
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const ctx = document.getElementById('tagChart');
-        
+        const tagChart = document.getElementById('tagChart');
+        const taskChart = document.getElementById('taskChart');
+
+
         var tags = {!! json_encode($tags) !!}
-        console.log(tags);
         var tag_names = [];
-        var tag_values = [];
+        var tag_colors = [];
+
+        var tagCounts = {!! json_encode($tagCounts) !!}
+        var taskCounts = {!! json_encode($taskCounts) !!}
+
 
 
         for (var i = 0; i < tags.length; i++) {
 
             tag_names[i] = tags[i].name;
+            tag_colors[i] = '#' + tags[i].color;
         }
 
-        new Chart(ctx, {
+
+        new Chart(tagChart, {
             type: 'bar',
             data: {
                 labels: tag_names,
                 datasets: [{
                     label: 'Počet projektů',
-                    data: [1, 3],
-                    borderWidth: 1
+                    data: tagCounts,
+                    borderWidth: 1,
+                    backgroundColor: tag_colors,
                 }]
             },
             options: {
@@ -58,6 +75,17 @@
                         beginAtZero: true
                     }
                 }
+            }
+        });
+
+        new Chart(taskChart, {
+            type: 'doughnut',
+            data: {
+                labels: ['dokončené', 'nedokončené'],
+                datasets: [{
+                    label: 'Počet úkolů',
+                    data: taskCounts
+                }]
             }
         });
     </script>

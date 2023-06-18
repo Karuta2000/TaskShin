@@ -13,7 +13,7 @@ class NoteController extends Controller
 {
     public function index()
     {
-        $notes = Note::where('user_id', Auth::id());
+        $notes = Note::where('user_id', Auth::id())->get();
 
         return view('notes.index', compact('notes'));
     }
@@ -44,7 +44,7 @@ class NoteController extends Controller
     public function edit(Note $note)
     {
         $colors = Color::all();
-        $projects = Project::where('user_id', Auth::id());
+        $projects = Project::where('user_id', Auth::id())->get();
         return view('notes.edit', compact('note', 'colors', 'projects'));
     }
 
@@ -60,7 +60,12 @@ class NoteController extends Controller
 
         $note->update($validatedData);
 
-        $twoPagesBackUrl = url()->previous(2);
+        return redirect()->route('notes');
+    }
+
+    public function destroy(Note $note)
+    {
+        $note->delete();
 
         return redirect()->route('notes');
     }

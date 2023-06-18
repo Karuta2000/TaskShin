@@ -1,7 +1,5 @@
 <nav class="navbar shadow navbar-expand-lg navbar-dark bg-dark px-3">
-    <a class="navbar-brand" href="{{ route('dashboard') }}"><img
-            src="https://cdn-icons-png.flaticon.com/512/671/671164.png" width="30" height="30"
-            class="d-inline-block align-top" alt=""></a>
+    <a class="navbar-brand" href="/">TaskShin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

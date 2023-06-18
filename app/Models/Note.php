@@ -27,7 +27,9 @@ class Note extends Model
     }
 
     public function lastUpdate(){
-        $timeSinceUpdate = Carbon::parse($this->updatedAt)->diffForHumans();
+        $updated_at = $this->attributes['updated_at'];
+        Carbon::setLocale('cs');
+        $timeSinceUpdate = Carbon::parse($updated_at)->diffForHumans();
         return $timeSinceUpdate;
     }
     

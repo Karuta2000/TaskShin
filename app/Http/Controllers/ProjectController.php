@@ -40,7 +40,7 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        $tags = Tag::where('user_id', Auth::id());
+        $tags = Tag::where('user_id', Auth::id())->get();
         return view('projects.show', compact('project', 'tags'));
     }
 
@@ -74,7 +74,10 @@ class ProjectController extends Controller
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');
-        $projects = Project::where('name', 'LIKE', '%' . $keyword . '%')->get();
+        $projects = Project::where('user_id', Auth::id())->where('name', 'LIKE', "%$keyword%")->get();
+        if($projects == null){
+            $projects = Project::where('user_id', Auth::id());
+        }
 
         return response()->json($projects);
     }
