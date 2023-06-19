@@ -49,16 +49,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="profile_photo_path"
+                                <label for="avatar"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="profile_photo_path" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="profile_photo_path"
-                                        value="{{ old('profile_photo_path', auth()->user()->profile_photo_path) }}"
-                                        autocomplete="profile_photo_path" autofocus>
+                                    <input id="avatar" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" name="avatar"
+                                        value="{{ old('avatar', auth()->user()->avatar) }}"
+                                        autocomplete="avatar" autofocus>
 
-                                    @error('profile_photo_path')
+                                    @error('avatar')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

@@ -17,7 +17,7 @@
     </style>
 </head>
 
-<body class="bg-light bg-gradient">
+<body class="bg-light bg-gradient" style="display: flex; flex-direction: column; min-height: 100vh;">
     <!-- Navbar -->
     <x-navbar />
     <!-- End Navbar -->
@@ -31,7 +31,7 @@
 
     <!-- End Main Content -->
 
-    <section id="features" class="py-5">
+    <section id="features" class="py-5" style="flex: 1">
         <div class="container">
           <div class="row">
             <div class="col-md-4">

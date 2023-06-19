@@ -12,6 +12,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('register') }}">Registrace</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('login.google') }}"><i class="fa fa-google" aria-hidden="true"></i></a>
+            </li>
         </ul>
     </div>
 </nav>

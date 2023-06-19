@@ -24,7 +24,7 @@
 
             <div class="pb-3">
                 @foreach($project->tags as $tag)
-                    <a class="btn badge p-2 text-light shadow-sm" style="background-color: #{{ $tag->color }}">{{ $tag->name }}</a>
+                    <a class="btn badge p-2 text-dark shadow-sm" style="background-color: #{{ $tag->color }}">{{ $tag->name }}</a>
                 @endforeach        
                 <a class="btn badge bg-primary p-2 text-light shadow-sm" data-toggle="modal"
                     data-target="#addTagModal">Nastavit tagy</a>

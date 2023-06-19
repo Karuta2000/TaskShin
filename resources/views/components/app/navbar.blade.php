@@ -27,11 +27,11 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                <a class="nav-link dropdown-toggle bg-dark rounded shadow" href="#" id="navbarDropdownMenuLink" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
-                            <img src="{{ Auth::user()->profile_photo_path }}" alt="Avatar">
+                            <img src="{{ Auth::user()->avatar }}" alt="Avatar">
                         </div>
                         <span class="username">{{ Auth::user()->name }}</span>
                     </div>

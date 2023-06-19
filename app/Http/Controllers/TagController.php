@@ -34,8 +34,7 @@ class TagController extends Controller
 
         $tag = new Tag();
         $tag->name = $request->name;
-        $color = substr($request->color, 1);
-        $tag->color= $color;
+        $tag->color= $request->color;
         $tag->user_id = $request->user_id;
         $tag->save();
 
@@ -48,21 +47,21 @@ class TagController extends Controller
         return view('tags.edit', compact('tag', 'colors'));
     }
 
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:tags,name,' . $tag->id . '|max:255',
+            'name' => 'required|unique:tags,name,max:255',
             'color' => 'required'
         ]);
 
-        $color = substr($request->color, 1);
+        $tag = Tag::where('id', $request->id)->first();
 
         $tag->name = $request->name;
-        $tag->color = $color;
+        $tag->color = $request->color;
         
         $tag->save();
 
-        return redirect()->route('tags')->with('success', 'Tag updated successfully.');
+        return redirect()->route('tags')->with('success', 'Tag byl úspěšně upraven.');
     }
 
     public function destroy(Tag $tag)
