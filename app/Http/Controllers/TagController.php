@@ -68,7 +68,7 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return redirect()->route('tags')->with('success', 'Tag deleted successfully.');
+        return redirect()->route('tags')->with('success', 'Tag úspěšně.');
     }
 
     public function attachTagsToProject(Request $request, Project $project)

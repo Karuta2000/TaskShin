@@ -43,14 +43,14 @@
             <div class="col-md-4">
               <div class="feature-box">
                 <i class="fas fa-chart-bar fa-3x"></i>
-                <h3>Organizuj své projekty efektivněji:</h3>
+                <h3>Organizuj své projekty efektivněji</h3>
                 <p>Naše aplikace ti umožní vytvořit a sledovat projekty různého rozsahu a složitosti. Díky intuitivnímu rozhraní můžeš snadno přidávat, upravovat a přehledně organizovat své úkoly a poznámky. Už nikdy neztratíš důležitou informaci nebo nedokončený úkol.</p>
               </div>
             </div>
             <div class="col-md-4">
               <div class="feature-box">
                 <i class="fas fa-mobile-alt fa-3x"></i>
-                <h3>Přizpůsobení podle tvých potřeb: </h3>
+                <h3>Přizpůsobení podle tvých potřeb</h3>
                 <p>Rozumíme, že každý má své vlastní preferované způsoby organizace. Proto naše aplikace umožňuje přizpůsobit si rozložení, barvy a další aspekty tak, aby vyhovovaly tvým individuálním potřebám. Budeš mít pocit, že aplikace je přesně taková, jakou si přeješ..</p>
               </div>
             </div>

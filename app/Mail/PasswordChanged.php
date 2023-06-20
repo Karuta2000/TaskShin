@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeEmail extends Mailable
+class PasswordChanged extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -27,7 +27,7 @@ class WelcomeEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome Email',
+            subject: 'Password Changed',
         );
     }
 
@@ -37,7 +37,7 @@ class WelcomeEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.welcome',
+            view: 'view.name',
         );
     }
 
@@ -49,16 +49,5 @@ class WelcomeEmail extends Mailable
     public function attachments(): array
     {
         return [];
-    }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->view('emails.welcome')
-                    ->subject('Vítejte na Taskshin');
     }
 }

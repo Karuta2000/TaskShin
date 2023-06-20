@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -70,6 +72,10 @@ class LoginController extends Controller
             $newUser->google_id = $user->getId();
 
             $newUser->save();
+
+            $userEmail = $newUser->email;
+
+            Mail::to($userEmail)->send(new WelcomeEmail());
 
             Auth::login($newUser);
         }
