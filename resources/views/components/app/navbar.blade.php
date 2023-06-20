@@ -31,9 +31,9 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
-                            <img src="{{ Auth::user()->avatar }}" alt="Avatar">
+                            <img src="{{ Auth::user()->avatar }}" alt="Avatar"  onerror="this.src='{{ asset('images/avatar.png') }}'">
                         </div>
-                        <span class="username">{{ Auth::user()->name }}</span>
+                        <span class="username ms-1">{{ Auth::user()->name }}</span>
                     </div>
                 </a>
                 <div class="dropdown-menu  dropdown-menu-right"  aria-labelledby="navbarDropdownMenuLink">

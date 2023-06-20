@@ -9,6 +9,8 @@ use App\Models\Task;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\PasswordChanged;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -61,6 +63,8 @@ class UserController extends Controller
         }
 
         $user->save();
+
+        Mail::to($user->name)->send(new PasswordChanged());
 
         return redirect()->back()->with('success', 'Your changes have been saved.');
     }

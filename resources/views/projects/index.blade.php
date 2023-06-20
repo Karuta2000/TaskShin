@@ -5,5 +5,5 @@
 
     
 
-    @livewire('search-projects')
+    @livewire('project-manager')
 @endsection

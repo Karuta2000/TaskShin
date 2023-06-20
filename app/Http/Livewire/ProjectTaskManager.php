@@ -8,8 +8,10 @@ use Livewire\Component;
 use App\Models\Project;
 use App\Models\Task;
 
-class TaskManager extends Component
+class ProjectTaskManager extends Component
 {
+
+    public $project;
 
     public $name;
     public $description;
@@ -22,16 +24,19 @@ class TaskManager extends Component
     public function render()
     {
         $projects = Project::where('user_id', Auth::id())->get();
+
+        
+
         if($this->closedTasks){
-            $tasks = Task::where('user_id', Auth::id())->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            $tasks = Task::where('user_id', Auth::id())->where('project_id', $this->project->id)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
         }
         else{
             $tasks = Task::where('user_id', Auth::id())->where('completed', 0)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
         }
 
+        $this->project_id = $this->project->id;
         return view('livewire.task-manager', compact('tasks', 'projects'));
 
-        return view('livewire.task-manager');
     }
 
     public function updateTask($taskId){

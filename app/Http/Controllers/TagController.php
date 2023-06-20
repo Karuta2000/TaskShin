@@ -28,7 +28,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:tags|max:255',
+            'name' => 'required|max:255',
             'color' => 'required'
         ]);
 
@@ -50,8 +50,8 @@ class TagController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:tags,name,max:255',
-            'color' => 'required'
+            'name' => 'required|max:255',
+            'color' => 'nullable'
         ]);
 
         $tag = Tag::where('id', $request->id)->first();

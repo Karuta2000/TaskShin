@@ -27,7 +27,7 @@ class PasswordChanged extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Password Changed',
+            subject: 'Údaje změněny',
         );
     }
 
@@ -37,7 +37,7 @@ class PasswordChanged extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.password-changed',
         );
     }
 
@@ -49,5 +49,11 @@ class PasswordChanged extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+
+    public function build()
+    {
+        return $this->view('emails.password-changed')
+                    ->subject('Vaše údaje byly změněny');
     }
 }
