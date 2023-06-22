@@ -15,7 +15,7 @@ class ProjectNoteManager extends Component
     public function render()
     {
 
-        $notes = Note::where('user_id', Auth::id())->where('id', $this->project->id)->where(function ($query) {
+        $notes = Note::where('user_id', Auth::id())->where('project_id', $this->project->id)->where(function ($query) {
             $query->orWhere('title', 'LIKE', "%$this->searchTerm%")
                 ->orWhere('body', 'LIKE', "%$this->searchTerm%");
         })->get();;

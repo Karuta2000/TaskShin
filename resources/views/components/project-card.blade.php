@@ -11,7 +11,7 @@
             @endisset
     
             @if ($project->tasks->count() > 0)
-                <p class="card-text">Úkoly:
+                <p class="card-text"><i class="fa fa-check-square" aria-hidden="true"></i>
                     {{ $project->tasks->where('completed', 1)->count() }}/{{ $project->tasks->count() }}
                     ({{ ($project->tasks->where('completed', 1)->count() / $project->tasks->count()) * 100 }}%)
                 </p>

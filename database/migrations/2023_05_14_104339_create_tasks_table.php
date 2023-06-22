@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('name', 128);
             $table->text('description')->nullable();
             $table->unsignedBigInteger('project_id')->nullable();
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->nullOnDelete();
             $table->date('due')->nullable();
             $table->boolean('completed')->default(false);
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }
