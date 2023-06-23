@@ -1,6 +1,23 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v10.1.1...10.x)
+## [Unreleased](https://github.com/laravel/laravel/compare/update...main)
+
+## [update](https://github.com/laravel/laravel/compare/v10.1.1...update) - 2023-06-23
+
+Changelog for TaskShin v0.1 - Released on June 23, 2023:
+
+### New Features:
+
+User Interface: TaskShin now has a sleek and intuitive user interface, providing a seamless user experience.
+Projects: Users can now create projects to organize their tasks and notes efficiently. Each project has its own dedicated space.
+Notes: Users can create and manage notes within TaskShin, making it easier to jot down ideas, reminders, and important information.
+Tags: A tagging system has been implemented, allowing users to categorize tasks and notes for better organization and quick filtering.
+Tasks: Users can create and manage tasks within projects, ensuring a structured approach to completing their goals.
+
+### Framework and Libraries:
+
+Laravel and Jetstream Base: TaskShin is now built on the Laravel framework and utilizes Jetstream Base as the authentication scaffolding, ensuring a robust and secure foundation.
+Livewire: TaskShin has integrated Livewire, enabling real-time updates and interactivity without the need for refreshing the page.
 
 ## [v10.1.1](https://github.com/laravel/laravel/compare/v10.0.7...v10.1.1) - 2023-04-18
 
