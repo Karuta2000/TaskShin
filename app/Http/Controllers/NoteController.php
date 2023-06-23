@@ -7,20 +7,19 @@ use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\Color;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller
 {
     public function index()
     {
-        $notes = Note::all();
-
-        return view('notes.index', compact('notes'));
+        return view('notes.index');
     }
 
     public function create()
     {
         $colors = Color::all();
-        $projects = Project::all();
+        $projects = Project::where('user_id', Auth::id())->get();
         return view('notes.create', compact('colors', 'projects'));
     }
 
@@ -43,7 +42,7 @@ class NoteController extends Controller
     public function edit(Note $note)
     {
         $colors = Color::all();
-        $projects = Project::all();
+        $projects = Project::where('user_id', Auth::id())->get();
         return view('notes.edit', compact('note', 'colors', 'projects'));
     }
 
@@ -53,13 +52,30 @@ class NoteController extends Controller
             'title' => 'required|max:255',
             'body' => 'nullable',
             'user_id' => 'required|integer',
-            'project_id' => 'required|integer',
+            'project_id' => 'nullable',
             'color' => 'nullable'
         ]);
 
         $note->update($validatedData);
 
-        $twoPagesBackUrl = url()->previous(2);
+        if($note->project != null){
+            $note->project->updated_at = now();
+            $note->project->save();
+        }
+
+        return redirect()->route('notes');
+    }
+
+    public function destroy(Note $note)
+    {
+
+        if($note->project != null){
+            $note->project->updated_at = now();
+            $note->project->save();
+        }
+
+        $note->delete();
+
 
         return redirect()->route('notes');
     }
