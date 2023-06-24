@@ -1,4 +1,4 @@
-<nav class="navbar shadow navbar-expand-lg navbar-dark bg-dark px-3">
+<nav class="navbar shadow navbar-expand-lg navbar-dark px-3" style="background-color: #0C0F0Aee;">
     <a class="navbar-brand" href="/">TaskShin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,22 +7,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link btn btn-dark" href="{{ route('dashboard') }}"><i class="fa fa-tachometer" aria-hidden="true"></i>
-                    Přehled</a>
+                <a class="nav-link btn p-2 me-2" href="{{ route('dashboard') }}" style="background-color: #0C0F0A;"><i class="fa fa-tachometer" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('projects') }}"><i class="fa fa-flask" aria-hidden="true"></i>
-                    Projekty</a>
+                <a class="nav-link btn p-2 me-2" href="{{ route('projects') }}" style="background-color: #0C0F0A;"><i class="fa fa-flask" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('tasks') }}"><i class="fa fa-check-square" aria-hidden="true"></i> Úkoly</a>
+                <a class="nav-link btn p-2 me-2" href="{{ route('tasks') }}" style="background-color: #0C0F0A;"><i class="fa fa-check-square" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('notes') }}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>
-                    Poznámky</a>
+                <a class="nav-link btn p-2 me-2" href="{{ route('notes') }}" style="background-color: #0C0F0A;"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('tags') }}"><i class="fa fa-tags" aria-hidden="true"></i> Tagy</a>
+                <a class="nav-link btn p-2 me-2" href="{{ route('tags') }}" style="background-color: #0C0F0A;"><i class="fa fa-tags" aria-hidden="true"></i></a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

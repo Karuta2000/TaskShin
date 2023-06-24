@@ -1,6 +1,6 @@
 <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-    <div class="card shadow" style="background-color: #{{ $project->color }}">
-        <div class="card-header bg-dark text-light">
+    <div class="card shadow" style="background-color: #{{ $project->color->HEX }}AA">
+        <div class="card-header" style="background-color: #{{ $project->color->HEX }}; color: {{ $project->color->darkText ? '#000000' : '#FFFFFF'}}">
             <h4 class="card-title m-0">{{ Illuminate\Support\Str::limit($project->name, 26, '...') }}</h4>
         </div>
         <div class="card-body px-3 fw-medium">

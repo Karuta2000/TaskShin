@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('app')
 
 @section('content')
     <div class="container">
@@ -39,8 +39,8 @@
                                     <div class="row">
                                         @foreach ($colors as $color)
                                             <div class="col-1">
-                                                <input class="form-check-input" type="radio" name="color"
-                                                    value="{{ $color->HEX }}" {{ $project->color == $color->HEX ? 'checked' : '' }}
+                                                <input class="form-check-input" type="radio" name="color_id"
+                                                    value="{{ $color->id }}" {{ $project->color == $color->HEX ? 'checked' : '' }}
                                                     style="background-color: #{{ $color->HEX }}" required>
                                             </div>
                                         @endforeach

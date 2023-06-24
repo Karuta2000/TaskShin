@@ -10,7 +10,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'user_id', 'color', 'favorite', 'image'];
+    protected $fillable = ['name', 'description', 'user_id', 'color_id', 'favorite', 'image'];
 
     protected $primaryKey = 'id';
 
@@ -52,6 +52,10 @@ class Project extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function color(){
+        return $this->belongsTo(Color::class);
     }
 
     public function lastUpdate(){

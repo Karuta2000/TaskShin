@@ -8,7 +8,7 @@
                     <option value="updated_at">Řadit od poslední změny</option>
                 </select>
                 <input type="text" id="searchInput" class="form-control" wire:model="searchTerm" style="{{ \Illuminate\Support\Str::startsWith($searchTerm, '#') ? 'background-color: #BBC2E2' : ''}}"
-                    placeholder="Vyhledat...">
+                    placeholder="Search...">
 
             </div>
 

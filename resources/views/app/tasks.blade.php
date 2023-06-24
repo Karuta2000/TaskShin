@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('app')
 
 @section('content')
     <h1>Úkoly</h1>

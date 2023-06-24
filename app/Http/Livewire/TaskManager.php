@@ -19,16 +19,18 @@ class TaskManager extends Component
     public $project_id;
     public $taskId;
 
+    public $searchTerm;
+
     public $closedTasks;
 
     public function render()
     {
         $projects = Project::where('user_id', Auth::id())->get();
         if($this->closedTasks){
-            $tasks = Task::where('user_id', Auth::id())->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
         }
         else{
-            $tasks = Task::where('user_id', Auth::id())->where('completed', 0)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->where('completed', 0)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
         }
 
         return view('livewire.task-manager', compact('tasks', 'projects'));

@@ -1,8 +1,8 @@
-@extends('layout')
+@extends('app')
 
 @section('content')
-    <div class="card" style="background-color: #{{ $project->color }}88">
-        <div class="card-header bg-dark">
+    <div class="card" style="background-color: #{{ $project->color->HEX }}AA;  color: {{ $project->color->darkText ? '#000000' : '#FFFFFF'}}">
+        <div class="card-header" style="background-color: #{{ $project->color->HEX }};">
             <h2 class="text-light m-0">
                 {{ $project->name }}
             </h2>
@@ -36,7 +36,7 @@
                 @endisset
             </div>
 
-            <h3>Úkoly</h3>
+            <h3 style="color: #{{$project->color->darkText}}">Úkoly</h3>
 
             @livewire('project-task-manager', ['project' => $project])
 

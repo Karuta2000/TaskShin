@@ -19,6 +19,7 @@ class ProjectTaskManager extends Component
     public $project_id;
     public $taskId;
 
+    public $searchTerm;
     public $closedTasks;
 
     public function render()

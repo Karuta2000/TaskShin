@@ -4,9 +4,17 @@
         <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTaskModal"
             wire:click="createTask()">Nový úkol</a>
         <div class="float-right">
-            <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off" wire:model="closedTasks">
-            <label class="btn btn-outline-light" for="btn-check-outlined"><i class="fa fa-check"
-                    aria-hidden="true"></i></label><br>
+            <div class="input-group">
+                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off"
+                    wire:model="closedTasks">
+                <label class="btn btn-outline-light" for="btn-check-outlined"><i class="fa fa-check"
+                        aria-hidden="true"></i></label><br>
+                <input type="text" id="searchInput" class="form-control" wire:model="searchTerm"
+                    style="{{ \Illuminate\Support\Str::startsWith($searchTerm, '#') ? 'background-color: #BBC2E2' : '' }}"
+                    placeholder="Search...">
+
+            </div>
+
         </div>
     </div>
 
@@ -40,8 +48,8 @@
                     <td>{{ $task->name }}</td>
                     <td>
                         @if ($task->project != null)
-                        <a href="{{ route('projects.show', $task->project->id) }}"><span class="badge text-dark p-2" style="background-color: #{{$task->project->color}}">{{ Illuminate\Support\Str::limit($task->project->name, 22, '...') }}</span></a>
-
+                            <a href="{{ route('projects.show', $task->project->id) }}"><span class="badge text-dark p-2"
+                                    style="background-color: #{{ $task->project->color }}">{{ Illuminate\Support\Str::limit($task->project->name, 22, '...') }}</span></a>
                         @endif
                     </td>
                     <td>{{ $task->due }}</td>
@@ -49,7 +57,8 @@
                     <td class="text-end" style="width: 50px;">
                         <div class="dropdown" wire:ignore>
                             <button class="btn btn-sm btn-link dropdown-toggle" type="button"
-                                id="task{{ $task->id }}Actions" data-bs-toggle="dropdown" aria-expanded="false"  wire:ignore>
+                                id="task{{ $task->id }}Actions" data-bs-toggle="dropdown" aria-expanded="false"
+                                wire:ignore>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions" wire:ignore>
                                 <li><a class="dropdown-item" data-toggle="modal" data-target="#editTaskModal"
