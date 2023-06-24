@@ -9,8 +9,6 @@ use App\Models\Task;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Mail\PasswordChanged;
-use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -35,8 +33,9 @@ class UserController extends Controller
             $projects = Project::where('user_id', Auth::id())->orderBy('created_at', 'desc')->limit(4)->get();
             return view('dashboard', compact('tags', 'projects', 'tagCounts', 'taskCounts'));
         }
-        return view('homepage');
         
+    
+        return view('homepage');
     }
     /**
      * Update the user's name and password.
@@ -63,8 +62,6 @@ class UserController extends Controller
         }
 
         $user->save();
-
-        Mail::to($user->name)->send(new PasswordChanged());
 
         return redirect()->back()->with('success', 'Your changes have been saved.');
     }
