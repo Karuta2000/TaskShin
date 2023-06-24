@@ -19,7 +19,7 @@
 
 <body class="bg-light bg-gradient" style="display: flex; flex-direction: column; min-height: 100vh;">
     <!-- Navbar -->
-    <x-homepage.navbar />
+    <x-navbar />
     <!-- End Navbar -->
     <!-- Main Content -->
     <div class="pt-5 w-100 homepage-cover" style="background-image: url('{{ asset('images/homepagewallpaper.jpg') }}'); height: 400px">
@@ -60,7 +60,7 @@
      
       
 
-    <x-homepage.footer />
+    <x-footer />
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

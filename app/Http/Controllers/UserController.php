@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-/*use App\Models\Tag;
+use App\Models\Tag;
 use App\Models\Task;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Mail\PasswordChanged;
-use Illuminate\Support\Facades\Mail;*/
 
 class UserController extends Controller
 {
@@ -21,7 +19,7 @@ class UserController extends Controller
 
     public function dashboard(){
         
-        /*if (Auth::check()) {
+        if (Auth::check()) {
             $tags = Tag::where('user_id', Auth::id())->get();
             $tagCounts = [];
             foreach ($tags as $tag){
@@ -36,7 +34,7 @@ class UserController extends Controller
             return view('dashboard', compact('tags', 'projects', 'tagCounts', 'taskCounts'));
         }
         
-        */
+    
         return view('homepage');
     }
     /**
@@ -47,7 +45,7 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        /*$user = Auth::user();
+        $user = Auth::user();
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -65,8 +63,6 @@ class UserController extends Controller
 
         $user->save();
 
-        Mail::to($user->name)->send(new PasswordChanged());
-
-        return redirect()->back()->with('success', 'Your changes have been saved.');*/
+        return redirect()->back()->with('success', 'Your changes have been saved.');
     }
 }
