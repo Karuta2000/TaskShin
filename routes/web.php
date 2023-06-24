@@ -81,8 +81,6 @@ Route::get('/projects/{project}/edit',  [ProjectController::class, 'edit'])->nam
 Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
-Route::get('/search-projects', SearchProjects::class);
-
 Route::get('/auth/google', 'App\Http\Controllers\Auth\LoginController@redirectToGoogle')->name('login.google');
 Route::get('/auth/google/callback', 'App\Http\Controllers\Auth\LoginController@handleGoogleCallback');
 

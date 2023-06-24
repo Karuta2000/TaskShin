@@ -15,6 +15,7 @@ class TagManager extends Component
     public $tagId;
 
 
+
     public function render()
     {
         $tags = Tag::where('user_id', Auth::id())->get();
@@ -22,12 +23,15 @@ class TagManager extends Component
         return view('livewire.tag-manager', compact('tags', 'colors'));
     }
 
-    public function updateTag($tagId){
+    public function editTag($tagId){
         $tag = Tag::where('id', $tagId)->first();
         $this->name = $tag->name;
         $this->tagId = $tagId;
         $this->color = $tag->color;
     }
+
+
+
 
 
 }
