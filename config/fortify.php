@@ -142,14 +142,6 @@ return [
             'confirmPassword' => true,
             // 'window' => 0,
         ]),
-        
-    ],
-
-    'providers' => [
-        'google' => [
-            'driver' => 'google',
-            'provider' => 'users',
-        ],
     ],
 
 ];
