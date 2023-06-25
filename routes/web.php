@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+    Route::get('/tags', [TagController::class, 'index'])->name('tags');
 
     Route::get('/user/settings', [UserController::class, 'showSettings'])->name('user.settings');
     Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
@@ -76,13 +77,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-    Route::get('/tags', [TagController::class, 'index'])->name('tags');
-    Route::get('/tags/create',  [TagController::class, 'create'])->name('tags.create');
-    Route::post('/tags',  [TagController::class, 'store'])->name('tags.store');
-    Route::get('/tags/{tag}',  [TagController::class, 'show'])->name('tags.show');
-    Route::get('/tags/{tag}/edit',  [TagController::class, 'edit'])->name('tags.edit');
-    Route::put('/tags', [TagController::class, 'update'])->name('tags.update');
-    Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
 
     Route::post('/tags/{project}',  [TagController::class, 'attachTagsToProject'])->name('tags.attachToProject');
 });

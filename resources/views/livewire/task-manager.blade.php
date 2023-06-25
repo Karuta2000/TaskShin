@@ -1,8 +1,8 @@
-<div>
+<div style="text-align: left !important">
 
     <div class="p-2 rounded bg-dark mb-3">
-        <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTaskModal" wire:click="createTask()"><i
-                class="fa fa-check-square" aria-hidden="true"></i></a>
+        <a href="#" class="btn btn-light text-left" style="text-align: left !important" data-toggle="modal"
+            data-target="#addTaskModal" wire:click="createTask()"><i class="fa fa-check-square" aria-hidden="true"></i></a>
 
         <div class="float-right">
             <div class="input-group">
@@ -30,62 +30,67 @@
         </div>
     </div>
 
-    <table class="table table-striped mb-0">
-        <thead>
-            <tr>
-                <th class="text-end text-nowrap" style="width: 50px;"></th>
-                <th>Name</th>
-                <th>Subtasks</th>
-                <th>Project</th>
-                <th>Due Date</th>
-                <th>Priority</th>
-                <th class="text-end text-nowrap" style="width: 50px;"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($tasks as $task)
-                <tr class="{{ $task->completed ? 'completed' : '' }} task align-middle">
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="custom-control-input" name="completed"
-                                {{ $task->completed ? 'checked' : '' }} id="task{{ $task->id }}Checkbox"
-                                wire:click="completeTask({{ $task->id }})">
-                            <label class="custom-control-label rounded" for="task{{ $task->id }}Checkbox"></label>
-                        </div>
-                    </td>
-                    <td>{{ $task->name }}</td>
-                    <td></td>
-                    <td>
-                        @if ($task->project != null)
-                            <a href="{{ route('projects.show', $task->project->id) }}"><span class="badge p-2"
-                                    style="background-color: #{{ $task->project->color->HEX }}; color:  {{ $task->project->color->darkText ? '#000000' : '#FFFFFF' }}">{{ Illuminate\Support\Str::limit($task->project->name, 22, '...') }}</span></a>
-                        @endif
-                    </td>
-                    <td>{{ $task->due }}</td>
-                    <td>{{ $task->priority }}</td>
-
-
-                    <td class="text-end" style="width: 50px;">
-                        <div class="dropdown" wire:ignore>
-                            <button class="btn btn-sm btn-link dropdown-toggle" type="button"
-                                id="task{{ $task->id }}Actions" data-bs-toggle="dropdown" aria-expanded="false"
-                                wire:ignore>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions" wire:ignore>
-                                <li><a class="dropdown-item" data-toggle="modal" data-target="#editTaskModal"
-                                        wire:click="editTask({{ $task->id }})" href="#">Upravit</a>
-                                </li>
-                                <li><a class="dropdown-item" data-toggle="modal" data-target="#deleteTaskModal"
-                                        wire:click="deleteTask({{ $task->id }})" href="#">Smazat</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </td>
+    @if (count($tasks) > 0)
+        <table class="table table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-end text-nowrap" style="width: 50px;"></th>
+                    <th>Name</th>
+                    <th>Subtasks</th>
+                    <th>Project</th>
+                    <th>Due Date</th>
+                    <th>Priority</th>
+                    <th class="text-end text-nowrap" style="width: 50px;"></th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($tasks as $task)
+                    <tr class="{{ $task->completed ? 'completed' : '' }} task align-middle">
+                        <td>
+                            <div class="form-check">
+                                <input type="checkbox" class="custom-control-input" name="completed"
+                                    {{ $task->completed ? 'checked' : '' }} id="task{{ $task->id }}Checkbox"
+                                    wire:click="completeTask({{ $task->id }})">
+                                <label class="custom-control-label rounded"
+                                    for="task{{ $task->id }}Checkbox"></label>
+                            </div>
+                        </td>
+                        <td>{{ $task->name }}</td>
+                        <td></td>
+                        <td>
+                            @if ($task->project != null)
+                                <a href="{{ route('projects.show', $task->project->id) }}"><span class="badge p-2"
+                                        style="background-color: #{{ $task->project->color->HEX }}; color:  {{ $task->project->color->darkText ? '#000000' : '#FFFFFF' }}">{{ Illuminate\Support\Str::limit($task->project->name, 22, '...') }}</span></a>
+                            @endif
+                        </td>
+                        <td>{{ $task->due }}</td>
+                        <td>{{ $task->priority }}</td>
+
+
+                        <td class="text-end" style="width: 50px;">
+                            <div class="dropdown" wire:ignore>
+                                <button class="btn btn-sm btn-link dropdown-toggle" type="button"
+                                    id="task{{ $task->id }}Actions" data-bs-toggle="dropdown" aria-expanded="false"
+                                    wire:ignore>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions" wire:ignore>
+                                    <li><a class="dropdown-item" data-toggle="modal" data-target="#editTaskModal"
+                                            wire:click="editTask({{ $task->id }})" href="#">Upravit</a>
+                                    </li>
+                                    <li><a class="dropdown-item" data-toggle="modal" data-target="#deleteTaskModal"
+                                            wire:click="deleteTask({{ $task->id }})" href="#">Smazat</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
+
+
 
 
 

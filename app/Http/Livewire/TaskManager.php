@@ -21,7 +21,7 @@ class TaskManager extends Component
 
     public $searchTerm;
 
-    public $closedTasks;
+    public $closedTasks = false;
 
     public $project;
     public $deleteNotify;
@@ -42,11 +42,11 @@ class TaskManager extends Component
             $this->project_id = $this->project->id;
         }
         else{
-            if($this->closedTasks){
+            if($this->closedTasks == true){
                 $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->orderBy($this->sortBy, $this->getSorting($this->sortBy))->get();
             }
             else{
-                $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->orderBy($this->sortBy, $this->getSorting($this->sortBy))->orderBy('due', 'asc')->get();
+                $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->where('completed', 0)->orderBy($this->sortBy, $this->getSorting($this->sortBy))->orderBy('due', 'asc')->get();
             }
         }
         $projects = Project::where('user_id', Auth::id())->get();

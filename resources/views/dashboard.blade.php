@@ -4,13 +4,12 @@
     <h1>Dashboard</h1>
     <div class="card">
         <div class="card-header bg-dark text-light">
-            <h2>Nejnovější projekty</h2>
+            <h2>Newest project</h2>
         </div>
         <div class="card-body">
             <div class="row">
                 @foreach ($projects as $project)
-                    @component('components.project-card', ['project' => $project])
-                    @endcomponent
+                    @livewire('cards.project', ['project' => $project])
                 @endforeach
             </div>
         </div>

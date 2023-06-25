@@ -48,9 +48,9 @@
                                 <div class="square-radio px-3">
                                     <div class="row">
                                         @foreach ($colors as $color)
-                                            <div class="col-1">
-                                                <input class="form-check-input" type="radio" name="color_id"
-                                                    value="{{ $color->id }}" {{ $project->color == $color->HEX ? 'checked' : '' }}
+                                            <div class="col-2 mb-2">
+                                                <input class="form-check-input mx-auto" type="radio" name="color_id"
+                                                    value="{{ $color->id }}" {{ $project->color->id == $color->id ? 'checked' : '' }}
                                                     style="background-color: #{{ $color->HEX }}" required>
                                             </div>
                                         @endforeach

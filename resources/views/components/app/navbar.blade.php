@@ -1,4 +1,4 @@
-<nav class="navbar shadow-lg navbar-expand-lg navbar-dark bg-dark px-3">
+<nav class="navbar shadow-lg navbar-expand-lg navbar-dark bg-dark px-3 sticky-top">
     <a class="navbar-brand" href="/"><img src="{{ asset('images/icon.png') }}" alt="Bootstrap" width="36"
             height="36"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
@@ -28,7 +28,11 @@
                     style="background-color: #0C0F0A;"><i class="fa fa-tags" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn py-2 px-3 me-2 bg-black" href="#" style="background-color: #0C0F0A;"><i
+                <a class="nav-link btn py-2 px-3 me-2 bg-black disabled" href="{{ route('tags') }}"
+                    style="background-color: #0C0F0A;"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn py-2 px-3 me-2 bg-black disabled" href="#" style="background-color: #0C0F0A;"><i
                         class="fa fa-search" aria-hidden="true"></i></a>
             </li>
         </ul>
