@@ -38,7 +38,7 @@
 
             <h3 style="color: #{{$project->color->darkText}}">Úkoly</h3>
 
-            @livewire('project-task-manager', ['project' => $project])
+            @livewire('task-manager', ['project' => $project])
 
             <hr>
             <h3>Poznámky</h3>

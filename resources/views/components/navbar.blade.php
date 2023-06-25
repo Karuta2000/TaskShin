@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">Přihlásit se</a>
+                <a class="nav-link" href="{{ route('login') }}">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">Registrace</a>
+                <a class="nav-link" href="{{ route('register') }}">Registration</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('login.google') }}"><i class="fa fa-google" aria-hidden="true"></i></a>

@@ -1,6 +1,6 @@
 @extends('app')
 
 @section('content')
-    <h1>Projekty</h1> 
+    <h1>Projects</h1> 
     @livewire('project-manager')
 @endsection

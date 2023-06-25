@@ -23,15 +23,29 @@ class TaskManager extends Component
 
     public $closedTasks;
 
+    public $project;
+    public $deleteNotify;
+
     public function render()
     {
-        $projects = Project::where('user_id', Auth::id())->get();
-        if($this->closedTasks){
-            $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+        if($this->project != null){
+            if($this->closedTasks){
+                $tasks = Task::where('user_id', Auth::id())->where('project_id', $this->project->id)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            }
+            else{
+                $tasks = Task::where('user_id', Auth::id())->where('project_id', $this->project->id)->where('completed', 0)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            }
+            $this->project_id = $this->project->id;
         }
         else{
-            $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->where('completed', 0)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            if($this->closedTasks){
+                $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            }
+            else{
+                $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->where('completed', 0)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            }
         }
+        $projects = Project::where('user_id', Auth::id())->get();
 
         return view('livewire.task-manager', compact('tasks', 'projects'));
 
@@ -91,6 +105,10 @@ class TaskManager extends Component
     public function deleteTask($taskId){
         $task = Task::where('id', $taskId)->first();
         $this->taskId = $task->id;
+        if(!$this->deleteNotify){
+            $task->delete();
+            $this->render();
+        }
     }
 
     public function destroyTask(){

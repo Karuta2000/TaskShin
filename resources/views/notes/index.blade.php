@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1>Poznámky</h1>
+    <h1>Notes</h1>
     
     @livewire('note-manager')
 @endsection

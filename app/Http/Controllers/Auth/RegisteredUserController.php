@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\ProfileSettings;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -41,6 +42,15 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        /*$profile = ProfileSettings::where('user_id', $user->id)->first();
+
+        if(!$profile){
+            $profile = new ProfileSettings;
+            $profile->user_id = $user->id;
+            $profile->save();
+        }*/
+        
 
         event(new Registered($user));
 

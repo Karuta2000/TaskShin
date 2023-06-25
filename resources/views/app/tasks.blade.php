@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1>Úkoly</h1>
+    <h1>Tasks</h1>
     
     @livewire('task-manager')
 @endsection

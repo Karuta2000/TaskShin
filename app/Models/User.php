@@ -26,6 +26,8 @@ class User extends Authenticatable
         'description'
     ];
 
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -45,4 +47,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function profile(){
+        return $this->hasOne(ProfileSettings::class);
+    }
 }

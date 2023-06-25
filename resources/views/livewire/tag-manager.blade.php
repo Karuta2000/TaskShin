@@ -1,6 +1,6 @@
 <div>
     <div class="p-2 shadow-lg rounded bg-dark mb-3">
-        <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTagModal">Nový tag</a>
+        <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTagModal"><i class="fa fa-plus" aria-hidden="true"></i></a>
     </div>
 
 

@@ -1,6 +1,6 @@
 <div>
     <div class="p-2 shadow-sm rounded bg-dark mb-3">
-        <a href="{{ route('projects.create') }}" class="btn btn-light">Nový projekt</a>
+        <a href="{{ route('projects.create') }}" class="btn btn-light"><i class="fa fa-plus" aria-hidden="true"></i></a>
         <div class="float-right">
             <div class="input-group">
                 <select class="form-select" wire:model="sortBy" aria-label="Seřadit podle">

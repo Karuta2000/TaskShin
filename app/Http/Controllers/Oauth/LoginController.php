@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Oauth;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use App\Models\ProfileSettings;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,16 @@ class LoginController extends Controller
             $existingUser = User::where('email', $user->getEmail())->first();
             $noId = true;
         }
+
+
+        $profile = ProfileSettings::where('user_id', $existingUser->id)->first();
+
+        if(!$profile){
+            $profile = new ProfileSettings;
+            $profile->user_id = $existingUser->id;
+            $profile->save();
+        }
+
 
 
 

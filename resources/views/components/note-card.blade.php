@@ -13,7 +13,7 @@
                 @if($note->project != null)
                 {{ Illuminate\Support\Str::limit($note->project->name, 10, '...') }}
                 @else
-                Bez projektu
+                No project
                 @endif
             </div>
 

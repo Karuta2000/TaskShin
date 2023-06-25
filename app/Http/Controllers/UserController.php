@@ -65,4 +65,10 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Your changes have been saved.');
     }
+
+    public function profile(){
+        $user = Auth::user();
+
+        return view('users/profile', compact('user'));
+    }
 }
