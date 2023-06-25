@@ -8,15 +8,22 @@
             <div class="input-group">
                 <input type="checkbox" class="btn-check rounded" id="btn-check-outlined-notify" autocomplete="off"
                     wire:model="deleteNotify">
-                <label class="btn btn-outline-light px-3" for="btn-check-outlined-notify"><i class="fa fa-exclamation"
-                        aria-hidden="true"></i></label><br>
+                <label class="btn btn-outline-light px-3 mb-0" for="btn-check-outlined-notify"><i
+                        class="fa fa-exclamation" aria-hidden="true"></i></label><br>
                 <input type="checkbox" class="btn-check rounded" id="btn-check-outlined-tasks" autocomplete="off"
                     wire:model="closedTasks">
-                <label class="btn btn-outline-light" for="btn-check-outlined-tasks"><i class="fa fa-check"
+                <label class="btn btn-outline-light mb-0" for="btn-check-outlined-tasks"><i class="fa fa-check"
                         aria-hidden="true"></i></label><br>
+                <select class="form-select" wire:model="sortBy" aria-label="Sort by">
+                    <option value="name" selected>Sort by name</option>
+                    <option value="priority" selected>Sort by priority</option>
+                    <option value="due" selected>Sort by due date</option>
+                    <option value="updated_at">Sort by last update</option>
+                </select>
                 <input type="text" id="searchInput" class="form-control" wire:model="searchTerm"
                     style="{{ \Illuminate\Support\Str::startsWith($searchTerm, '#') ? 'background-color: #BBC2E2' : '' }}"
                     placeholder="Search...">
+
 
             </div>
 
@@ -55,7 +62,7 @@
                         @endif
                     </td>
                     <td>{{ $task->due }}</td>
-                    <td></td>
+                    <td>{{ $task->priority }}</td>
 
 
                     <td class="text-end" style="width: 50px;">
@@ -122,6 +129,15 @@
                         <textarea class="form-control" id="description" name="description" rows="3" wire:model="description"></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <label for="priority"></label>
+                        <select name="priority" id="priority" wire:model="priority">
+                            @for ($i = 1; $i <= 10; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+
 
 
                 </div>
@@ -166,8 +182,17 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="description">Popis</label>
+                        <label for="description">Description</label>
                         <textarea class="form-control" id="description" name="description" rows="3" wire:model="description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">Priority</label>
+                        <select class="form-control" name="priority" id="priority" wire:model="priority">
+                            @for ($i = 1; $i <= 10; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
                     </div>
 
                 </div>

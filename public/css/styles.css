@@ -4,7 +4,7 @@
     height: 1.25rem;
     border: #22222299 solid 1px;
     transition: 0.5;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
 }
 
@@ -15,8 +15,8 @@
 
 .custom-control .custom-control-input:checked~.custom-control-label::before {
     border-color: #007bff;
-    background-color: #007bff;
-    content: "\2713";
+    background-color: #005bbd;
+    content: "\f00c";
 }
 
 .task-check {
@@ -181,4 +181,21 @@
 
 .task {
   height: auto;
+}
+
+.banner-image {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 70%; /* Adjust the padding bottom to maintain aspect ratio */
+}
+
+.banner-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

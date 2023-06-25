@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('images/icon.png') }}">
     <livewire:styles />
+    
 
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <style>
@@ -69,11 +70,6 @@
             bootstrapToast.show();
         </script>
     @endisset
-
-
-
-
-
 
 
 

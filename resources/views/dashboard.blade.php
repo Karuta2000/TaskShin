@@ -21,18 +21,6 @@
     
 
 
-    <div class="container-fluid row mt-4">
-        <div class="col-md-4 col-sm-10 mx-auto">
-            <h1>Statistika tagů</h1>
-            <canvas id="tagChart" width="400" height="400"></canvas>
-        </div>
-        <div class="col-md-4 col-sm-10 mx-auto">
-            <h1>Přehled úkolů</h1>
-            <canvas id="taskChart" width="400" height="400"></canvas>
-        </div>
-    </div>
-
-
 
 
 
@@ -54,7 +42,7 @@
         for (var i = 0; i < tags.length; i++) {
 
             tag_names[i] = tags[i].name;
-            tag_colors[i] = '#' + tags[i].color;
+            tag_colors[i] = '#' + tags[i].color.HEX;
         }
 
 

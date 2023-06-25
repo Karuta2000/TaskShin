@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{ $tag->name }}</td>
                     <td><span class="badge p-2 text-light shadow-sm"
-                            style="background-color: #{{ $tag->color }}">...</span></td>
+                        style="background-color: #{{ $tag->color->HEX }}; color:  {{ $tag->color->darkText ? '#000000' : '#FFFFFF' }} !important">...</span></td>
                     <td>{{ $tag->projects->count() }}</td>
                     <td class="text-end" style="width: 50px;">
                         <div class="dropdown">
@@ -112,8 +112,8 @@
                                 <div class="row">
                                     @foreach ($colors as $color)
                                         <div class="col-lg-2 col-md-4 col-6 mb-2 mx-auto">
-                                            <input class="form-check-input" type="radio" name="color"
-                                                value="{{ $color->HEX }}" wire:model="color"
+                                            <input class="form-check-input" type="radio" name="color_id"
+                                                value="{{ $color->id }}" wire:model="color"
                                                 {{ $color->HEX == 'FFFFFF' ? 'checked' : '' }}
                                                 style="background-color: #{{ $color->HEX }}" required>
                                         </div>

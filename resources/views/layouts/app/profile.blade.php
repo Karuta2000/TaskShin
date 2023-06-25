@@ -61,7 +61,6 @@
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.js') }}"></script>
     <livewire:scripts />
 
-	<script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
     @isset($success)
         <script>
             var toast = document.getElementById('myToast');

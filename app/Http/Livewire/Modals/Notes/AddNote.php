@@ -1,39 +1,30 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Modals\Notes;
 
-use App\Models\Color;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 use App\Models\Note;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
-class NoteManager extends Component
-{
-    public $searchTerm;
-
+class AddNote extends Component
+{  
     public $title;
     public $body;
     public $noteId;
     public $color_id;
+
 
     public $project_id;
 
     public function render()
     {
         $projects = Project::where('user_id', Auth::id())->get();
-
-        $colors = Color::all();
-
-        $notes = Note::where('user_id', Auth::id())->where(function ($query) {
-            $query->orWhere('title', 'LIKE', "%$this->searchTerm%")
-                ->orWhere('body', 'LIKE', "%$this->searchTerm%");
-        })->orderBy('updated_at', 'desc')->get();
-
-        return view('livewire.note-manager', ['notes' => $notes, 'projects' => $projects, 'colors' => $colors]);
+        return view('livewire.modals.notes.add-note', compact('projects'));
     }
 
-    public function clearForm(){
+    
+    public function createNote(){
         $this->title = null;
         $this->body = null;
         $this->color_id = 1;
@@ -48,10 +39,7 @@ class NoteManager extends Component
         $note->user_id = Auth::id();
         $note->color_id = $this->color_id;
         $note->save();
-        $this->clearForm();
     }
-
-
 
 
 }
