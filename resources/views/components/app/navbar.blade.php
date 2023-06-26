@@ -52,8 +52,9 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="{{ route('user.settings') }}"><i class="fa fa-cog" aria-hidden="true"></i> User Settings</a></li>
-                    <li><a class="dropdown-item" href="{{ route('user.settings') }}"><i class="fa fa-user" aria-hidden="true"></i> Profile Settings</a></li>
+                    <li><a class="dropdown-item" href="{{ route('user.settings.user') }}"><i class="fa fa-cog" aria-hidden="true"></i> User Settings</a></li>
+                    <li><a class="dropdown-item" href="{{ route('user.settings.password') }}"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Password Settings</a></li>
+                    <li><a class="dropdown-item" href="{{ route('user.settings.profile') }}"><i class="fa fa-user" aria-hidden="true"></i> Profile Settings</a></li>
                     <li><a class="dropdown-item"
                             href="{{ route('logout') }}"onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout

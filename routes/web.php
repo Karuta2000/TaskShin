@@ -27,11 +27,13 @@ use Livewire\Livewire;
 
 Route::get('/', function () {
     // Your code to check if the request is from the host
-    if (request()->getHost() === 'localhost:8000') {
+    if (request()->getHost() === '192.168.1.225:8000') {
         return view('homepage');
     }
     return redirect()->route('dashboard');
 });
+
+
 require __DIR__ . '/auth.php';
 
 Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
@@ -50,8 +52,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
     Route::get('/tags', [TagController::class, 'index'])->name('tags');
 
-    Route::get('/user/settings', [UserController::class, 'showSettings'])->name('user.settings');
+    Route::get('/user/settings/user', [UserController::class, 'showUserSettings'])->name('user.settings.user');
+    Route::get('/user/settings/password', [UserController::class, 'showPasswordSettings'])->name('user.settings.password');
+    Route::get('/user/settings/profile', [UserController::class, 'showProfileSettings'])->name('user.settings.profile');
     Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
+    Route::put('/user/update/password', [UserController::class, 'updatePassword'])->name('user.update.password');
+    Route::put('/user/update/profile', [UserController::class, 'updateProfile'])->name('user.update.profile');
     Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
 
 
