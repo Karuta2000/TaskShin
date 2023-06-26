@@ -29,12 +29,12 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'color' => 'required'
+            'color_id' => 'required'
         ]);
 
         $tag = new Tag();
         $tag->name = $request->name;
-        $tag->color= $request->color;
+        $tag->color_id= $request->color_id;
         $tag->user_id = $request->user_id;
         $tag->save();
 
@@ -51,13 +51,13 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'color' => 'nullable'
+            'color_id' => 'nullable'
         ]);
 
         $tag = Tag::where('id', $request->id)->first();
 
         $tag->name = $request->name;
-        $tag->color = $request->color;
+        $tag->color_id = $request->color_id;
         
         $tag->save();
 

@@ -30,7 +30,8 @@ class ProjectController extends Controller
             'name' => 'required|max:255',
             'description' => 'nullable',
             'user_id' => 'required|integer',
-            'color' => 'nullable'
+            'color_id' => 'nullable',
+            'image' => 'nullable'
         ]);
 
         $project = Project::create($validatedData);
@@ -56,7 +57,8 @@ class ProjectController extends Controller
             'name' => 'required|max:255',
             'description' => 'nullable',
             'user_id' => 'required|integer',
-            'color' => 'nullable'
+            'color_id' => 'nullable',
+            'image' => 'nullable'
         ]);
 
         $project->update($validatedData);

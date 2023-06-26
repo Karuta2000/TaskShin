@@ -24,9 +24,13 @@
     <!-- Main Content -->
     <div class="pt-5 w-100 homepage-cover" style="background-image: url('{{ asset('images/homepagewallpaper.jpg') }}'); height: 400px">
         <div class="container">
-            <h1 class="mb-3">Vítejte v aplikaci TaskShin</h1>
-            <p>Tato aplikace na vytváření projektů, úkolů a poznámek ti pomůže zvýšit produktivitu a efektivitu, a zároveň udržet všechny důležité informace na dosah. S její pomocí budeš mít větší kontrolu nad svými projekty a úkoly, a zároveň usnadníš spolupráci s týmem</p>
+            <h1 class="mb-3">Welcome to the TaskShin application.</h1>
+            <p>This app for creating projects, tasks, and notes will help you increase productivity and efficiency while keeping all important information at your fingertips. 
+              With its help, you will have greater control over your projects and tasks, while also facilitating collaboration with your team.
+            </p>
         </div>
+        
+
     </div>
 
     <!-- End Main Content -->
@@ -34,24 +38,25 @@
     <section id="features" class="py-5" style="flex: 1">
         <div class="container">
           <div class="row">
+
             <div class="col-md-4">
               <div class="feature-box">
-                <h3>Integrované poznámky pro efektivní záznamy</h3>
-                <p>S naší aplikací nemusíš mít oddělenou aplikaci pro poznámky. Můžeš jednoduše vytvářet a ukládat poznámky přímo ve svých projektech a úkolech. Můžeš je organizovat do kategorií, přidávat klíčová slova a vyhledávat v nich. Tímto způsobem budeš mít všechny důležité informace na jednom místě.</p>
+                <h3>Integrated Notes for Efficient Records</h3>
+                <p>With our application, you don't need a separate app for notes. You can easily create and save notes directly within your projects and tasks. You can organize them into categories, add keywords, and search within them. This way, you will have all important information in one place.</p>
               </div>
             </div>
             <div class="col-md-4">
               <div class="feature-box">
                 <i class="fas fa-chart-bar fa-3x"></i>
-                <h3>Organizuj své projekty efektivněji</h3>
-                <p>Naše aplikace ti umožní vytvořit a sledovat projekty různého rozsahu a složitosti. Díky intuitivnímu rozhraní můžeš snadno přidávat, upravovat a přehledně organizovat své úkoly a poznámky. Už nikdy neztratíš důležitou informaci nebo nedokončený úkol.</p>
+                <h3>Organize Your Projects More Efficiently</h3>
+                <p>Our application allows you to create and track projects of various sizes and complexities. With an intuitive interface, you can easily add, edit, and neatly organize your tasks and notes. You will never lose important information or unfinished tasks again.</p>
               </div>
             </div>
             <div class="col-md-4">
               <div class="feature-box">
                 <i class="fas fa-mobile-alt fa-3x"></i>
-                <h3>Přizpůsobení podle tvých potřeb</h3>
-                <p>Rozumíme, že každý má své vlastní preferované způsoby organizace. Proto naše aplikace umožňuje přizpůsobit si rozložení, barvy a další aspekty tak, aby vyhovovaly tvým individuálním potřebám. Budeš mít pocit, že aplikace je přesně taková, jakou si přeješ..</p>
+                <h3>Customization According to Your Needs</h3>
+                <p>We understand that everyone has their own preferred ways of organization. That's why our application allows you to customize the layout, colors, and other aspects to fit your individual needs. You will feel like the app is exactly what you want it to be.</p>
               </div>
             </div>
           </div>

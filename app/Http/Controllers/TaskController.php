@@ -15,7 +15,7 @@ class TaskController extends Controller
         $projects = Project::all();
         $activeTasks = Task::where('user_id', Auth::id())->where('completed', 0)->get();
         $closedTasks = Task::where('user_id', Auth::id())->where('completed', 1)->get();
-        return view('tasks/index', compact('activeTasks', 'closedTasks', 'projects'));
+        return view('app/tasks', compact('activeTasks', 'closedTasks', 'projects'));
     }
 
     public function create()

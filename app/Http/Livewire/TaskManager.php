@@ -7,7 +7,7 @@ use Livewire\Component;
 
 use App\Models\Project;
 use App\Models\Task;
-
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 
 class TaskManager extends Component
@@ -19,17 +19,37 @@ class TaskManager extends Component
     public $project_id;
     public $taskId;
 
-    public $closedTasks;
+    public $searchTerm;
+
+    public $closedTasks = false;
+
+    public $project;
+    public $deleteNotify;
+
+    public $priority;
+
+    public $sortBy = 'name';
 
     public function render()
     {
-        $projects = Project::where('user_id', Auth::id())->get();
-        if($this->closedTasks){
-            $tasks = Task::where('user_id', Auth::id())->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+        if($this->project != null){
+            if($this->closedTasks){
+                $tasks = Task::where('user_id', Auth::id())->where('project_id', $this->project->id)->orderBy($this->sortBy, $this->getSorting($this->sortBy))->get();
+            }
+            else{
+                $tasks = Task::where('user_id', Auth::id())->where('project_id', $this->project->id)->where('completed', 0)->orderBy($this->sortBy, $this->getSorting($this->sortBy))->get();
+            }
+            $this->project_id = $this->project->id;
         }
         else{
-            $tasks = Task::where('user_id', Auth::id())->where('completed', 0)->orderBy('completed', 'asc')->orderBy('due', 'asc')->get();
+            if($this->closedTasks == true){
+                $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->orderBy($this->sortBy, $this->getSorting($this->sortBy))->get();
+            }
+            else{
+                $tasks = Task::where('user_id', Auth::id())->where('name', 'LIKE', '%'.$this->searchTerm.'%')->where('completed', 0)->orderBy($this->sortBy, $this->getSorting($this->sortBy))->orderBy('due', 'asc')->get();
+            }
         }
+        $projects = Project::where('user_id', Auth::id())->get();
 
         return view('livewire.task-manager', compact('tasks', 'projects'));
 
@@ -41,6 +61,7 @@ class TaskManager extends Component
         $this->description = null;
         $this->due = null;
         $this->taskId = null;
+        $this->priority = 1;
         $this->project_id = null;
     }
 
@@ -51,6 +72,7 @@ class TaskManager extends Component
         $task->due = $this->due;
         $task->project_id = $this->project_id;
         $task->user_id = Auth::id();
+        $task->priority = $this->priority;
         $task->save();
     }
 
@@ -61,6 +83,7 @@ class TaskManager extends Component
         $this->due = $task->due;
         $this->taskId = $taskId;
         $this->project_id = $task->project_id;
+        $this->priority = $task->priority;
     }
 
     public function updateTask(){
@@ -70,6 +93,7 @@ class TaskManager extends Component
         $task->description = $this->description;
         $task->due = $this->due;
         $task->project_id = $this->project_id;
+        $task->priority = $this->priority;
         $task->save();
     }
 
@@ -89,11 +113,30 @@ class TaskManager extends Component
     public function deleteTask($taskId){
         $task = Task::where('id', $taskId)->first();
         $this->taskId = $task->id;
+        if(!$this->deleteNotify){
+            $task->delete();
+            $this->render();
+        }
     }
 
     public function destroyTask(){
         $task = Task::where('id', $this->taskId)->first();
         $task->delete();
+    }
+
+
+
+
+    private function getSorting($atribute){
+        $sortByAsc = ['name'];
+
+        if(in_array($atribute, $sortByAsc)) {
+            return 'asc';
+        }
+        else {
+            return 'desc';
+        }
+
     }
 
 }

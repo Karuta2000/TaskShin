@@ -40,7 +40,7 @@
                     <td>{{ $task->name }}</td>
                     <td>
                         @if ($task->project != null)
-                        <a href="{{ route('project.show', $task->project->id) }}"><span class="badge" style="background-color: #{{$task->project->color}}">{{ $task->project->name }}</span></a>
+                        <a href="{{ route('project.show', $task->project->id) }}"><span class="badge {{ $task->project->color->darkText ? 'text-dark' : 'text-light '}}" style="background-color: #{{$task->project->color->HEX}}; ">{{ $task->project->name }}</span></a>
                             
                         @endif
                     </td>

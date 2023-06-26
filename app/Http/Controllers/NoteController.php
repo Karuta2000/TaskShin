@@ -30,7 +30,7 @@ class NoteController extends Controller
             'body' => 'nullable',
             'user_id' => 'required|integer',
             'project_id' => 'nullable',
-            'color' => 'nullable'
+            'color_id' => 'nullable'
         ]);
 
         $note = Note::create($validatedData);
@@ -53,7 +53,7 @@ class NoteController extends Controller
             'body' => 'nullable',
             'user_id' => 'required|integer',
             'project_id' => 'nullable',
-            'color' => 'nullable'
+            'color_id' => 'nullable'
         ]);
 
         $note->update($validatedData);

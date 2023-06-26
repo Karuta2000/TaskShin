@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('app')
 
 @section('content')
-    <h1>Tagy</h1>
+    <h1>Tags</h1>
     
 
     @livewire('tag-manager')

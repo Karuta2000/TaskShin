@@ -9,5 +9,5 @@ class Color extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'HEX'];
+    protected $fillable = ['name', 'HEX', 'darkText'];
 }

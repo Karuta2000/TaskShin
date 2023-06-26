@@ -1,7 +1,7 @@
 <div class="col-lg-2 col-md-6 col-sm-12">
     <a class="text-decoration-none custom-link" href="{{ route('notes.edit', $note->id) }}">
         <div class="card note rounded shadow mb-5 mx-auto"
-            style="background-color: #{{ $note->color }}">
+            style="background-color: #{{ $note->color->HEX }}; color: {{ $note->color->darkText ? '#000000' : '#FFFFFF'}}">
             <div class="card-body p-3">
                 <h5 class="card-title">{{ $note->title }}</h5>
                 <p class="card-body p-0">
@@ -13,7 +13,7 @@
                 @if($note->project != null)
                 {{ Illuminate\Support\Str::limit($note->project->name, 10, '...') }}
                 @else
-                Bez projektu
+                No project
                 @endif
             </div>
 

@@ -12,7 +12,7 @@ class Note extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'body', 'color', 'project_id', 'user_id'];
+    protected $fillable = ['title', 'body', 'color_id', 'project_id', 'user_id'];
 
     protected $primaryKey = 'id';
 
@@ -28,9 +28,12 @@ class Note extends Model
 
     public function lastUpdate(){
         $updated_at = $this->attributes['updated_at'];
-        Carbon::setLocale('cs');
-        $timeSinceUpdate = Carbon::parse($updated_at)->diffForHumans();
+        $timeSinceUpdate = Carbon::parse($updated_at)->diffForHumans(null, null, true, 1, null);
         return $timeSinceUpdate;
+    }
+
+    public function color(){
+        return $this->belongsTo(Color::class);
     }
     
 

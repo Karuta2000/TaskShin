@@ -12,7 +12,7 @@ class Tag extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name', 'color'];
+    protected $fillable = ['name', 'color_id'];
 
     protected $primaryKey = 'id';
 
@@ -22,6 +22,10 @@ class Tag extends Model
 
     public function projects(){
         return $this->belongsToMany(Project::class);
+    }
+
+    public function color(){
+        return $this->belongsTo(Color::class);
     }
 
 }

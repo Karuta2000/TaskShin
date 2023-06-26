@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('google_id')->nullable();
             $table->text('description')->nullable();
-            $table->dropColumn('profile_photo_path');
             $table->text('avatar')->nullable();
         });
     }

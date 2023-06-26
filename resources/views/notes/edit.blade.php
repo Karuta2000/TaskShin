@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('app')
 
 @section('content')
     <div class="container">
@@ -42,8 +42,8 @@
                                     <div class="row">
                                         @foreach ($colors as $color)
                                             <div class="col-1">
-                                                <input class="form-check-input" type="radio" name="color"
-                                                    value="{{ $color->HEX }}"
+                                                <input class="form-check-input" type="radio" name="color_id"
+                                                    value="{{ $color->id }}"
                                                     {{ $note->color == $color->HEX ? 'checked' : '' }}
                                                     style="background-color: #{{ $color->HEX }}" required>
                                             </div>
@@ -66,7 +66,7 @@
 
                             <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
                             <button type="submit" class="btn btn-primary">{{ __('Uložit') }}</button>
-                            <a href="{{ route('return') }}" class="btn btn-secondary">{{ __('Zrušit') }}</a>
+                            <a href="{{ route('notes') }}" class="btn btn-secondary">{{ __('Zrušit') }}</a>
 
                             
                         </form>

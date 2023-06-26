@@ -9,15 +9,24 @@ use App\Models\Task;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Mail\PasswordChanged;
-use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
-    public function showSettings()
+    public function showUserSettings()
     {
-        return view('users.settings');
+        return view('users.settings.user');
     }
+
+    public function showPasswordSettings()
+    {
+        return view('users.settings.password');
+    }
+
+    public function showProfileSettings()
+    {
+        return view('users.settings.profile');
+    }
+
 
     public function dashboard(){
         
@@ -35,8 +44,9 @@ class UserController extends Controller
             $projects = Project::where('user_id', Auth::id())->orderBy('created_at', 'desc')->limit(4)->get();
             return view('dashboard', compact('tags', 'projects', 'tagCounts', 'taskCounts'));
         }
-        return view('homepage');
         
+    
+        return view('homepage');
     }
     /**
      * Update the user's name and password.
@@ -51,21 +61,68 @@ class UserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'avatar' => 'nullable',
-            'password' => ['nullable', 'string', 'min:8', 'confirmed']
+            'password' => ['required', 'string', 'min:8']
         ]);
+
+        $passwordValid = Hash::check($request->password, $user->password);
+
+        if (!$passwordValid) {
+            return back()->withErrors(['password' => 'Wrong password']);
+        }
 
         $user->name = $request->name;
 
         $user->avatar = $request->avatar;
 
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Your changes have been saved.');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'banner' => 'nullable',
+            'sex' => 'required'
+        ]);
+
+
+        $user->profile->banner = $request->banner;
+
+        $user->profile->sex = $request->sex;
+
+        $user->profile->save();
+
+        return redirect()->back()->with('success', 'Your changes have been saved.');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'oldPassword' => ['required', 'string', 'min:8'],
+            'newPassword' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+
+        $passwordValid = Hash::check($request->oldPassword, $user->password);
+
+        if (!$passwordValid) {
+            return back()->withErrors(['oldPassword' => 'Wrong password']);
         }
+
+        $user->password = $request->newPassword;
 
         $user->save();
 
-        Mail::to($user->name)->send(new PasswordChanged());
-
         return redirect()->back()->with('success', 'Your changes have been saved.');
+    }
+
+    public function profile(){
+        $user = Auth::user();
+
+        return view('users/profile', compact('user'));
     }
 }
