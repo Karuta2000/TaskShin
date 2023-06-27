@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Oauth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProjectController;
@@ -28,12 +29,18 @@ use Livewire\Livewire;
 
 Route::get('/', function () {
     // Your code to check if the request is from the host
-    if (request()->getHost() === '192.168.1.225:8000') {
+    if(Auth::id() == null){
         return view('homepage');
     }
-    return redirect()->route('dashboard');
-});
+    else {
+        return redirect('/dashboard');
+    }
 
+});
+Route::get('/changelog', function () {
+    // Your code to check if the request is from the host
+    return view('changelog');
+});
 
 require __DIR__ . '/auth.php';
 
