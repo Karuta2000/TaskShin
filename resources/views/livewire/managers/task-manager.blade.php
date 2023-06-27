@@ -30,6 +30,7 @@
         </div>
     </div>
 
+
     @if (count($tasks) > 0)
         <table class="table table-striped mb-0">
             <thead>
@@ -89,6 +90,8 @@
             </tbody>
         </table>
     @endif
+
+
 
 
 

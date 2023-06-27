@@ -15,6 +15,9 @@
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ route('user.settings.profile') }}">Profile</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ route('user.settings.avatar') }}">Avatar</a>
+            </li>
         </ul>
     </nav>
 
