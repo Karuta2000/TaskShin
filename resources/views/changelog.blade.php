@@ -46,6 +46,52 @@
             <li>Laravel and Jetstream Base: TaskShin is now built on the Laravel framework and utilizes Jetstream Base as the authentication scaffolding, ensuring a robust and secure foundation.</li>
           </ul>
         </div>
+
+        <div class="changelog-entry">
+          <h2>v0.2</h2>
+          <p>Released on June 26, 2023</p>
+          <h3>New Features:</h3>
+          <ul>
+            <li>Profile: Users now have a dedicated profile page where they can view and update their personal information.</li>
+            <li>Enhanced User Settings: TaskShin introduces additional settings options, allowing users to customize their experience and preferences.</li>
+          </ul>
+        
+          <h3>Framework and Libraries:</h3>
+          <ul>
+            <li>Transition from Jetstream to Breeze: TaskShin has migrated from Jetstream to Breeze for authentication, providing a simplified and customizable authentication system.</li>
+            <li>New Login and Register Forms: TaskShin introduces redesigned login and register forms, offering an improved user experience.</li>
+          </ul>
+        
+          <h3>Project Updates:</h3>
+          <ul>
+            <li>Project Images: Users can now add images to each project, making it visually appealing and easier to recognize.</li>
+            <li>Improved Design: The design of projects has been enhanced, creating a more visually pleasing and intuitive layout.</li>
+            <li>Completely New Project Page: The project page has been redesigned from scratch, providing a better overview and management of project-related tasks and notes.</li>
+          </ul>
+        
+          <h3>Task Enhancements:</h3>
+          <ul>
+            <li>Priority Setting: Users can now assign priorities to tasks, helping them prioritize their work and focus on the most important tasks.</li>
+            <li>Enhanced Task Search: TaskShin offers more advanced search functionality for tasks, enabling users to find specific tasks quickly and efficiently.</li>
+          </ul>
+        
+          <h3>Improvements to Tags, Tasks, and Notes:</h3>
+          <ul>
+            <li>Streamlined Workflow: Adding tags, tasks, and notes has been improved for a smoother and more intuitive user experience.</li>
+            <li>Improved Colors: TaskShin now offers enhanced color options, allowing users to customize the visual appearance of their tasks, projects, and notes.</li>
+            <li>Navbar Improvements: The navigation bar has been refined, providing better accessibility and ease of use.</li>
+          </ul>
+        
+          <h3>Changelog on Homepage:</h3>
+          <ul>
+            <li>TaskShin's homepage now features a dedicated changelog section, keeping users informed about the latest updates and improvements.</li>
+          </ul>
+        
+          <h3>Bug Fixes:</h3>
+          <ul>
+            <li>Several bug fixes and performance enhancements have been implemented based on user feedback, ensuring a more stable and reliable application.</li>
+          </ul>
+        </div>
     </div>
 
     <x-footer />

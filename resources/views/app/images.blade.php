@@ -1,5 +1,5 @@
 @extends('app')
 
 @section('content')   
-    @livewire('managers.task-manager')
+    @livewire('managers.image-manager')
 @endsection

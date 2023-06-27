@@ -15,6 +15,7 @@
     
 
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
     <style>
         @font-face {
             font-family: Roboto;
@@ -27,7 +28,7 @@
     </style>
 </head>
 
-<body class="bg-light bg-gradient ">
+<body class="app-background" style="background-image: url('{{ asset('images/background.jpg') }}')">
 
     <x-app.navbar />
 

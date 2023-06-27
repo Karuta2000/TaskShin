@@ -1,11 +1,10 @@
 @extends('layouts.app.project')
 
 @section('content')
-    <div class="row justify-content-center m-0 w-100 bg-gradient">
-        <div class="project-container p-0" style="background-color: #{{ $project->color->HEX }}">
+    <div class="row justify-content-center m-0 w-100">
+        <div class="project-container p-0 bg-gradient" style="background-color: #{{ $project->color->HEX }}">
             <div class="project-banner"
                 style="{{ $project->banner != null ? 'background-image: url(\'' . $project->banner . '\')' : '' }}"></div>
-
             <div>
                 <img src="{{ $project->image }}" class="img-fluid shadow-lg project-image mt-5" style="z-index: 2; position: relative"
                     onerror="this.src='{{ asset('images/homepagewallpaper.jpg') }}'">
@@ -35,13 +34,13 @@
                 <div class="mb-5 container-fluid">
                     <h2 style="color: {{ $project->color->darkText ? '#000000' : '#FFFFFF' }}">Tasks</h2>
 
-                    @livewire('task-manager', ['project' => $project])
+                    @livewire('managers.task-manager', ['project' => $project])
                 </div>
 
                 <div class="mb-5 container-fluid">
                     <h2 style="color: {{ $project->color->darkText ? '#000000' : '#FFFFFF' }}">Notes</h2>
 
-                    @livewire('note-manager', ['project' => $project])
+                    @livewire('managers.note-manager', ['project' => $project])
                 </div>
 
 

@@ -1,9 +1,10 @@
-<div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-    <div class="card shadow-lg border-0 rounded-3" style="background-color: #{{ $project->color->HEX }}AA">
+<div class="board-item shadow">
+    <div class="card project-card border-0 rounded-3 bg-gradient" style="background-color: #{{ $project->color->HEX }}99;">
         <div class="card-img-top banner-image">
             <img src="{{ $project->image }}" onerror="this.src='{{ asset('images/homepagewallpaper.jpg') }}'"
                 class="img-fluid" alt="Project Image">
         </div>
+
         <div class="card-body px-3 fw-medium">
             <h4 class="m-3 text-center" style="color: {{ $project->color->darkText ? '#000000' : '#FFFFFF' }}">
                 {{ Illuminate\Support\Str::limit($project->name, 26, '...') }}</h4>
@@ -36,14 +37,13 @@
             </div>
         </div>
         <div class="card-footer">
-            <a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary"><i class="fa fa-eye"
+            <a href="{{ route('projects.show', $project->id) }}" class="btn btn-light"><i class="fa fa-eye"
                     aria-hidden="true"></i></a>
-            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning"><i class="fa fa-pencil"
+            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-light"><i class="fa fa-pencil"
                     aria-hidden="true"></i></a>
-            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-dark"><i class="fa fa-star-o"
+            <a href="#" wire:click="favorite()" class="btn btn-light">
+                <i class="fa fa-star{{ $project->favorite == 0 ? '-o' : '' }}"
                     aria-hidden="true"></i></a>
         </div>
-
-
     </div>
 </div>
