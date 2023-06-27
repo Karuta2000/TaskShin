@@ -2,22 +2,8 @@
 
 @section('content')
     <h1>Dashboard</h1>
-    <div class="card">
-        <div class="card-header bg-dark text-light">
-            <h2>Newest project</h2>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                @foreach ($projects as $project)
-                    @livewire('cards.project', ['project' => $project])
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    
-
-    
+    <p>Welcome, {{ auth()->user()->name }}, you are cute today! </p>
+    @livewire('managers.project-manager', ['count' => 4])
 
 
 

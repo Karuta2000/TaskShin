@@ -1,17 +1,17 @@
 <div style="text-align: left !important">
-
-    <div class="p-2 rounded bg-dark mb-3">
-        <a href="#" class="btn btn-light text-left" style="text-align: left !important" data-toggle="modal"
-            data-target="#addTaskModal" wire:click="createTask()"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+    <div class="p-2 shadow-sm rounded mb-3 bg-blur">
+        <a href="#" class="btn text-left" style="text-align: left !important" data-toggle="modal"
+            data-target="#addTaskModal" wire:click="createTask()"><i class="fa fa-plus" aria-hidden="true"
+                style="background: transparent  !important; color: #00A8E8;"></i></a>
 
         <div class="float-right">
             <div class="input-group">
                 <input type="checkbox" class="btn-check rounded" id="btn-check-outlined-notify" autocomplete="off"
-                    wire:model="deleteNotify">
+                    wire:model="deleteNotify" style="display: none">
                 <label class="btn btn-outline-light px-3 mb-0" for="btn-check-outlined-notify"><i
                         class="fa fa-exclamation" aria-hidden="true"></i></label><br>
                 <input type="checkbox" class="btn-check rounded" id="btn-check-outlined-tasks" autocomplete="off"
-                    wire:model="closedTasks">
+                    wire:model="closedTasks" style="display: none">
                 <label class="btn btn-outline-light mb-0" for="btn-check-outlined-tasks"><i class="fa fa-check"
                         aria-hidden="true"></i></label><br>
                 <select class="form-select" wire:model="sortBy" aria-label="Sort by">

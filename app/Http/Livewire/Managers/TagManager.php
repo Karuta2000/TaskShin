@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Managers;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -20,7 +20,7 @@ class TagManager extends Component
     {
         $tags = Tag::where('user_id', Auth::id())->get();
         $colors = Color::all();
-        return view('livewire.tag-manager', compact('tags', 'colors'));
+        return view('livewire.managers.tag-manager', compact('tags', 'colors'));
     }
 
 

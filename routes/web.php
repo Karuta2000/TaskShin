@@ -7,6 +7,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ImageController;
 
 use Livewire\Livewire;
 
@@ -47,10 +48,11 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
-
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
     Route::get('/tags', [TagController::class, 'index'])->name('tags');
+    Route::get('/gallery', [ImageController::class, 'index'])->name('gallery');
+    Route::get('/notes', [NoteController::class, 'index'])->name('notes');
+
 
     Route::get('/user/settings/user', [UserController::class, 'showUserSettings'])->name('user.settings.user');
     Route::get('/user/settings/password', [UserController::class, 'showPasswordSettings'])->name('user.settings.password');
@@ -59,7 +61,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/user/update/password', [UserController::class, 'updatePassword'])->name('user.update.password');
     Route::put('/user/update/profile', [UserController::class, 'updateProfile'])->name('user.update.profile');
     Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
-
 
     Route::prefix('projects')->group(function (){
         Route::get('/', [ProjectController::class, 'index'])->name('projects');
@@ -71,18 +72,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{project}', [ProjectController::class, 'update'])->name('projects.update');
         Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
     });
-
-    Route::prefix('/notes')->group(function (){
-        Route::get('/', [NoteController::class, 'index'])->name('notes');
-        Route::get('/create',  [NoteController::class, 'create'])->name('notes.create');
-        Route::post('/',  [NoteController::class, 'store'])->name('notes.store');
-        Route::get('/{note}',  [NoteController::class, 'show'])->name('notes.show');
-        Route::get('/{note}/edit',  [NoteController::class, 'edit'])->name('notes.edit');
-        Route::put('/{note}', [NoteController::class, 'update'])->name('notes.update');
-        Route::delete('/{note}', [NoteController::class, 'destroy'])->name('notes.destroy');
-    });
-
-
 
     Route::post('/tags/{project}',  [TagController::class, 'attachTagsToProject'])->name('tags.attachToProject');
 });

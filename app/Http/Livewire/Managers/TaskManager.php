@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Managers;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -51,7 +51,7 @@ class TaskManager extends Component
         }
         $projects = Project::where('user_id', Auth::id())->get();
 
-        return view('livewire.task-manager', compact('tasks', 'projects'));
+        return view('livewire.managers.task-manager', compact('tasks', 'projects'));
 
     }
 

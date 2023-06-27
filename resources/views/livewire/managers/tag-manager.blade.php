@@ -1,9 +1,13 @@
 <div>
-    <div class="p-2 shadow-lg rounded bg-dark mb-3">
-        <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTagModal" wire:click="clearForm()"><i
-                class="fa fa-plus" aria-hidden="true"></i></a>
-    </div>
+    <div class="py-2 shadow-sm rounded mb-3 bg-blur">
 
+        <div class="input-group col-2">
+            <a href="#" class="btn btn-light text-left border-0"  data-toggle="modal" data-target="#addTagModal" wire:click="clearForm()"
+                style="text-align: left !important; background: transparent  !important; color: #00A8E8">
+                <i class="fa fa-plus" aria-hidden="true"></i></a>
+
+        </div>
+    </div>
 
 
     <table class="table">

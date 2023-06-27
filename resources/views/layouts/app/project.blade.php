@@ -14,6 +14,8 @@
     <livewire:styles />
 
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+    
     <style>
         @font-face {
             font-family: Roboto;
