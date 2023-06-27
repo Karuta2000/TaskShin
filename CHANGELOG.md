@@ -1,5 +1,23 @@
 # Release Notes
 
+## v0.3 - 2023-06-27
+
+Changelog for TaskShin v0.3 - Released on June 28, 2023:
+
+### New Features:
+
+- Improved Notes: Notes have undergone significant improvements, making it easier to add and edit them. The cumbersome use of modals has been eliminated, allowing users to work directly with each note.
+- Images: TaskShin now supports images as a new feature. Users can save images on a dedicated page, although currently, only viewing functionality is available. Additional features related to images will be introduced in future updates.
+
+### Enhancements:
+
+- Design Improvements: The navbar and overall design of TaskShin have been enhanced. The main colors of the page now align with the colors of the logo, creating a more cohesive visual experience.
+- Removal of Unused Files and Components: Outdated and unused files and components have been removed, optimizing the application's codebase and improving performance.
+
+### Increased Usage of Livewire:
+
+- Livewire has been further integrated throughout TaskShin, enhancing real-time interactivity and providing a more seamless user experience.
+
 ## v0.2 - 2023-06-26
 
 Changelog for TaskShin v0.2 - Released on June 26, 2023:
