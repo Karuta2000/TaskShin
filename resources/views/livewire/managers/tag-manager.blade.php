@@ -16,6 +16,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Color</th>
                 <th scope="col">Projects</th>
+                <th scope="col">Images</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                             style="background-color: #{{ $tag->color->HEX }}; color:  {{ $tag->color->darkText ? '#000000' : '#FFFFFF' }} !important">...</span>
                     </td>
                     <td>{{ $tag->projects->count() }}</td>
+                    <td>{{ $tag->images->count() }}</td>
                     <td class="text-end" style="width: 50px;">
                         <div class="dropdown">
                             <button class="btn btn-sm btn-link dropdown-toggle" type="button"

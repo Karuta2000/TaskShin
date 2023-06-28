@@ -47,13 +47,10 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropstart">
-                <a class="nav-link btn dropdown-toggle shadow-sm btn-nav-app rounded shadow" href="#" id="navbarDropdownMenuLink"
-                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link btn dropdown-toggle shadow-sm btn-nav-app rounded shadow" href="#"
+                    id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="d-flex align-items-center">
-                        <div class="avatar">
-                            <img src="{{ Auth::user()->avatar }}" alt="Avatar"
-                                onerror="this.src='{{ asset('images/avatar.png') }}'">
-                        </div>
+                        @livewire('app.avatar', ['avatar' => Auth::user()->avatar ])
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left">
@@ -67,6 +64,8 @@
                                 class="fa fa-unlock-alt" aria-hidden="true"></i> Password Settings</a></li>
                     <li><a class="dropdown-item" href="{{ route('user.settings.profile') }}"><i class="fa fa-user"
                                 aria-hidden="true"></i> Profile Settings</a></li>
+                    <li><a class="dropdown-item" href="{{ route('user.settings.avatar') }}"><i class="fa fa-user"
+                                aria-hidden="true"></i> Avatar Settings</a></li>
                     <li><a class="dropdown-item"
                             href="{{ route('logout') }}"onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i

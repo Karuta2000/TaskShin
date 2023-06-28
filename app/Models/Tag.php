@@ -28,4 +28,9 @@ class Tag extends Model
         return $this->belongsTo(Color::class);
     }
 
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
 }
