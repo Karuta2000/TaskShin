@@ -10,9 +10,16 @@ class TaskCard extends Component
     public $task;
     public $completed;
 
+    public $editingTitle = false;
+
+    public $title;
+
+
     protected $rules = [
         'task.completed' => 'boolean',
     ];
+
+    protected $listeners = ['taskUpdated'];
 
     public function render()
     {
@@ -38,6 +45,21 @@ class TaskCard extends Component
 
     public function delete(){
         $this->task->delete();
+        $this->emit('boardUpdated');
+    }
+
+    public function editTitle(){
+        $this->editingTitle = true;
+        $this->title = $this->task->name;
+    }
+
+    public function saveTitle(){
+        $this->editingTitle = false;
+        $this->task->name = $this->title;
+        $this->task->save();
+    }
+
+    public function taskUpdated(){
         $this->emit('boardUpdated');
     }
 }

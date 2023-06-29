@@ -28,7 +28,9 @@
 
 <body class="app-background" style="background-image: url('{{ asset('images/background.jpg') }}')">
 
-    <x-app.navbar />
+    @livewire('app.navbar')
+
+    
 
     <div class="container-fluid py-3">
 

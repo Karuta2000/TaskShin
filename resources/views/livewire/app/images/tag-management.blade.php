@@ -4,7 +4,7 @@
         @foreach ($searchResults as $tag)
             <button wire:key="tag-{{ $tag->id }}" wire:click="setTag({{ $tag->id }})" type="button"
                 class="list-group-item list-group-item-action{{ in_array($tag->id, $selectedTags) ? ' active' : '' }}">
-                {{ $tag->name }}
+                {{ $tag->name }} ({{ $tag->images->count() }})
             </button>
         @endforeach
 

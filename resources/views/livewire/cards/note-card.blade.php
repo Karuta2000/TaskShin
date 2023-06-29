@@ -4,7 +4,7 @@
         <div class="card-body p-3" wire:click="edit()">
             @if ($edit)
                 <div>
-                    <input type="text" wire:model="title" wire:keydown.enter="save()"
+                    <input type="text" wire:model="title" wire:keydown.enter="save()" 
                         style="border: none; background: transparent; width: 100%; color: {{ $color->darkText ? '#000000' : '#FFFFFF' }}">
                     <textarea wire:keydown.enter="save()" maxlength="200"
                         style="border: none; background: transparent; width: 100%; height:  200px ; color: {{ $color->darkText ? '#000000' : '#FFFFFF' }}"

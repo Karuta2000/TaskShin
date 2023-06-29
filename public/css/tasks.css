@@ -8,7 +8,7 @@
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 70%; /* Increased height */
+  padding-bottom: 80%; /* Increased height */
   overflow: hidden;
   backdrop-filter: blur(40px);
 }
@@ -49,6 +49,7 @@
 .task-header {
   display: flex;
   align-items: center;
+  height: 40px;
 }
 
 
@@ -59,7 +60,7 @@
 }
 
 .task-title {
-  font-size: 20px;
+  font-size: 16px;
   margin: 0;
 }
 
@@ -127,3 +128,4 @@
 .project-pill:hover {
   opacity: 1;
 }
+

@@ -31,8 +31,6 @@
         Livewire.on('openImageModal', function() {
             $('#imageModal').modal('show');
         });
-
-
         Livewire.on('imageDeleted', function() {
         $('#imageModal').modal('hide');
     });

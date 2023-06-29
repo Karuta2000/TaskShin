@@ -1,12 +1,34 @@
 <div class="board-item shadow">
-    <div class="task-card shadow round-4 bg-blur-task bg-gradient" style="background-color: #{{ $task->color->HEX }}44">
+    <div class="task-card shadow round-4 bg-blur-task bg-gradient" style="background-color: #{{ $task->color->HEX }}99; color: {{ $task->color->darkText ? '#000000' : '#FFFFFF' }}">
         <div class="task-card-panel"></div>
         <div>
             <div class="float-end">
-                <span class="badge text-bg-primary">{{ $task->priority }}</span>
+                <div>
+                    <span class="badge text-bg-primary">{{ $task->priority }}</span>
+
+                    <div class="dropdown text-center" wire:ignore>
+                        <button class="btn btn-sm btn-link p-0 pt-1" type="button" id="task{{ $task->id }}Actions"
+                            data-bs-toggle="dropdown" aria-expanded="false" wire:ignore><i class="fa fa-cog"
+                                aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions" wire:ignore>
+                            <li><a class="dropdown-item" wire:click="$emit('openEditTaskModal', '{{ $task->id }}')" href="#">Update</a>
+                            </li>
+                            <li><a class="dropdown-item" wire:click="delete()" href="#">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
             <div class="task-header">
-                <h5 class="task-title">{{ $task->name }}</h5>
+                @if ($editingTitle)
+                    <input type="text" name="" id="" class="form-control p-0 h-auto b-0 bg-transparent" wire:model="title" wire:change="saveTitle">
+                @else
+                    <h5 class="task-title" wire:click="editTitle">{{ Illuminate\Support\Str::limit($task->name, 60, '...') }}</h5>
+                @endif
+
+
             </div>
 
             <div class="task-details my-2">
@@ -21,7 +43,7 @@
                             {{ $task->project != null ? $task->project->name : '' }}</span>
                     </a>
                 @else
-                <span class="badge rounded-pill bg-dark text-light">no project</span>
+                    <span class="badge rounded-pill bg-dark text-light ">no project</span>
                 @endif
 
             </div>
@@ -36,21 +58,8 @@
                                 onerror="this.src='{{ asset('images/avatar.png') }}'">
                         </a>
                     </div>
-
-
-                    <div class="dropdown" wire:ignore>
-                        <button class="btn btn-sm btn-link task-dropdown" type="button"
-                            id="task{{ $task->id }}Actions" data-bs-toggle="dropdown" aria-expanded="false"
-                            wire:ignore><i class="fa fa-cog" aria-hidden="true"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions" wire:ignore>
-                            <li><a class="dropdown-item" wire:click="delete()" href="#">Delete</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="col-6">
-
                     <div class="float-end">
                         <div class="input-group">
                             <div class="form-check">
@@ -60,22 +69,10 @@
                                     for="task{{ $task->id }}Checkbox"></label>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
-
-
             </div>
-
-
-
-            <div class="float-end">
-
-            </div>
-
-
         </div>
     </div>
+    
 </div>
