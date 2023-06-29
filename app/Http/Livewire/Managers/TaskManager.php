@@ -30,6 +30,8 @@ class TaskManager extends Component
 
     public $sortBy = 'name';
 
+    protected $listeners = ['boardUpdated'];
+
     public function render()
     {
         if($this->project != null){
@@ -137,6 +139,10 @@ class TaskManager extends Component
             return 'desc';
         }
 
+    }
+
+    public function boardUpdated(){
+        
     }
 
 }

@@ -8,37 +8,13 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mr-auto justify-content-center w-100">
 
-            <li class="nav-item">
-                <a class="nav-link btn btn-lg py-2 px-3 me-2 fs-5 bg-black shadow-sm btn-nav-app rounded {{ Route::is('projects') ? 'active' : '' }}"
-                    href="{{ route('projects') }}"><i class="fa fa-flask" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-lg py-2 px-3 me-2 fs-5 bg-black shadow-sm btn-nav-app rounded {{ Route::is('tasks') ? 'active' : '' }}"
-                    href="{{ route('tasks') }}"><i class="fa fa-check-square" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-lg py-2 px-3 me-2 fs-5 bg-black shadow-sm btn-nav-app rounded {{ Route::is('notes') ? 'active' : '' }}"
-                    href="{{ route('notes') }}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-lg py-2 px-3 me-2 fs-5 bg-black shadow-sm btn-nav-app rounded {{ Route::is('dashboard') ? 'active' : '' }}"
-                    href="{{ route('dashboard') }}">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-lg py-2 px-3 me-2 fs-5 bg-black shadow-sm btn-nav-app rounded {{ Route::is('tags') ? 'active' : '' }}"
-                    href="{{ route('tags') }}"><i class="fa fa-tags" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-lg py-2 px-3 me-2 fs-5 bg-black shadow-sm btn-nav-app rounded {{ Route::is('gallery') ? 'active' : '' }}"
-                    href="{{ route('gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i>
-                </a>
-            </li>
+            @livewire('app.navbar.link', ['route' => 'projects', 'icon' => 'flask'])
+            @livewire('app.navbar.link', ['route' => 'tasks', 'icon' => 'check-square'])
+            @livewire('app.navbar.link', ['route' => 'notes', 'icon' => 'sticky-note-o'])
+            @livewire('app.navbar.link', ['route' => 'dashboard', 'icon' => 'home'])
+            @livewire('app.navbar.link', ['route' => 'tags', 'icon' => 'tags'])
+            @livewire('app.navbar.link', ['route' => 'gallery', 'icon' => 'picture-o'])
+
             <li class="nav-item">
                 <a class="nav-link btn btn-lg py-2 px-3 me-2 fs-5 bg-black shadow-sm btn-nav-app disabled"
                     href="#"><i class="fa fa-search" aria-hidden="true"></i>

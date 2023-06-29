@@ -1,0 +1,131 @@
+.task-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.task-board .board-item {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 80%; /* Increased height */
+  overflow: hidden;
+  backdrop-filter: blur(40px);
+}
+
+.board-item .task-card{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 15px;
+  backdrop-filter: blur(40px);
+  background-color: #FFFFFF;
+  color: #000000;
+  border-radius: 10px;
+}
+
+
+.task-card::before {
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  background-color: #8f8fac77;
+  content: "";
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  opacity: 0.5;
+  filter: blur(1px);
+}
+
+
+
+
+.task-header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+
+
+.task-details {
+  flex: 1;
+  height: 70px;
+}
+
+.task-title {
+  font-size: 16px;
+  margin: 0;
+}
+
+.due-date {
+  font-size: 12px;
+  margin: 0;
+  color: #888888;
+}
+
+.task-checkbox {
+  margin-top: 15px;
+  margin-left: 0;
+}
+
+.task-checkbox::before,
+.task-checkbox::after {
+  width: 25px;
+  height: 25px;
+  border: #22222299 solid 1px;
+  transition: 0.5;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: #000000 1px;
+  border-color: #00A8E8;
+  text-align: center;
+}
+
+.custom-control-input:hover ~ .custom-control-label::before,
+.custom-control-input:hover ~ .custom-control-label::after {
+  content: '\2713'; /* Unicode character for check mark */
+  color: #FFFFFFAA;
+}
+
+.task-checkbox:hover::before,
+.task-checkbox:hover::after {
+  background-color: #00a6e867;
+  border-color: #00A8E8;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before,
+.custom-control-input:checked ~ .custom-control-label::after {
+  border-color: #00A8E8;
+  background-color: #00A8E8;
+  content: '\2713'; /* Unicode character for check mark */
+
+  color: #FFFFFF;
+}
+
+.task-check {
+  width: 15px;
+  height: 15px;
+}
+
+.task-dropdown {
+  margin-top: 15px;
+  margin-left: 10px;
+  color: #000000;
+}
+
+.project-pill {
+  transition: 0.3s;
+  opacity: 0.8;
+}
+
+.project-pill:hover {
+  opacity: 1;
+}
+

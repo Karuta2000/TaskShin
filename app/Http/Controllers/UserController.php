@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Task;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,6 +26,11 @@ class UserController extends Controller
     public function showProfileSettings()
     {
         return view('users.settings.profile');
+    }
+
+    public function showAvatarSettings()
+    {
+        return view('users.settings.avatar');
     }
 
 
@@ -60,7 +66,6 @@ class UserController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'avatar' => 'nullable',
             'password' => ['required', 'string', 'min:8']
         ]);
 
@@ -71,8 +76,6 @@ class UserController extends Controller
         }
 
         $user->name = $request->name;
-
-        $user->avatar = $request->avatar;
 
         $user->save();
 
@@ -114,6 +117,21 @@ class UserController extends Controller
         }
 
         $user->password = $request->newPassword;
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Your changes have been saved.');
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'avatar' => 'nullable',
+        ]);
+
+        $user->avatar = $request->avatar;
 
         $user->save();
 
