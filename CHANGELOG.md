@@ -1,5 +1,25 @@
 # Release Notes
 
+## v0.4 - 2023-06-29
+
+Changelog for TaskShin v0.4 - Released on June 29, 2023:
+
+### New Features:
+
+- Enhanced Image Functionality: The image feature has been expanded with the addition of tags. Users can now add tags to images, allowing for easier organization and searching based on tags.
+- Image Search: Users can now search for specific images based on their tags, making it convenient to locate images within the gallery.
+- Image Management: Users can delete images or set them as avatars, providing more control and customization options for their image collection.
+- Pagination in Image Gallery: The image gallery now includes pagination, improving the browsing experience when viewing a large number of images.
+
+### Task Updates:
+
+- Task Card Layout: Tasks have been updated from a table view to a more visually appealing card layout, offering a more engaging and intuitive task management experience.
+- Improved Task Modal: The task modal in the tasks page has been improved, providing a better user interface and enhancing the overall user experience.
+
+### Bug Fixes:
+
+- Various bug fixes and performance enhancements have been implemented based on user feedback, ensuring a smoother and more reliable application.
+
 ## v0.3 - 2023-06-27
 
 Changelog for TaskShin v0.3 - Released on June 28, 2023:
