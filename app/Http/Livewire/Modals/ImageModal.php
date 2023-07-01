@@ -17,6 +17,8 @@ class ImageModal extends Component
 
     public $selectedTags = [];
 
+    public $shownImage;
+
 
     protected $rules = [
         'selectedTags' => 'nullable',
@@ -27,12 +29,14 @@ class ImageModal extends Component
     public function openImageModal($image, $imageId)
     {
         $this->imageId = $imageId;
-        $shownImage = Image::where('id', $imageId)->first();
+        $this->shownImage = Image::where('id', $imageId)->first();
         $this->selectedTags = [];
-        foreach($shownImage->tags as $tag){
+        foreach($this->shownImage->tags as $tag){
             array_push($this->selectedTags, $tag->id);
         }
         $this->image = $image;
+        $this->shownImage->views += 1;
+        $this->shownImage->save();
         $this->emit('imageChanged', $imageId);
         $this->dispatchBrowserEvent('openImageModal');
     }
@@ -63,7 +67,6 @@ class ImageModal extends Component
     {
         $image = Image::where('id', $this->imageId)->first();
         $image->tags()->sync($this->selectedTags);
-        $this->emit('avatarChanged');
     }
 
 

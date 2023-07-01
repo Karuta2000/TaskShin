@@ -17,10 +17,6 @@
                         <input type="date" class="form-control" id="due_date" wire:model="due_date">
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" id="description" rows="3" wire:model="description"></textarea>
-                    </div>
-                    <div class="form-group">
                         <label for="priority">Priority</label>
                         <select class="form-control" id="priority" wire:model="priority">
                             @for ($i = 1; $i <= 10; $i++)

@@ -33,7 +33,7 @@
                         <i class="fa fa-cog" aria-hidden="true"></i>
                     </button>
 
-                    <div class="dropdown-menu mb-2" aria-labelledby="note{{ $note->id }}Actions" wire:ignore>
+                    <div class="dropdown-menu mb-2" aria-labelledby="note{{ $note->id }}Actions" wire:ignore style="max-height: 200px; overflow-y: auto; overflow-x: hidden">
                         <a class="dropdown-item" wire:click="delete()" href="#"><i class="fa fa-trash"
                                 aria-hidden="true"></i> Delete</a>
                         <a class="dropdown-item" wire:click="copy()" href="#"><i class="fa fa-copy"
@@ -50,13 +50,13 @@
                         </div>
                         @if ($colors != null)
 
-                            <div class="px-2">
+                            <div class="px-2 m">
                                 <div class="form-group">
                                     <div class="square-radio">
                                         <div class="row">
                                             @foreach ($colors as $color)
                                                 <div class="col-3 mb-1">
-                                                    <input class="form-check-input mx-auto" type="radio"
+                                                    <input class="color-checkbox mx-auto" type="radio"
                                                         wire:click="setColor({{ $color->id }})"
                                                         {{ $color->id == $note->color_id ? 'checked' : '' }}
                                                         style="background-color: #{{ $color->HEX }}" required>

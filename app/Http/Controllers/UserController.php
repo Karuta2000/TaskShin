@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Task;
 use App\Models\Project;
-use App\Models\User;
+use App\Models\UserPreferences;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -48,9 +48,20 @@ class UserController extends Controller
             $taskCounts = [$tasks->where('completed', 1)->count(), $tasks->where('completed', 0)->count()];
 
             $projects = Project::where('user_id', Auth::id())->orderBy('created_at', 'desc')->limit(4)->get();
+
+
+            if(Auth::user()->preferences == null){
+                $preferences = new UserPreferences;
+                $preferences->user_id = Auth::id();
+                $preferences->save();
+            }
+
+
             return view('dashboard', compact('tags', 'projects', 'tagCounts', 'taskCounts'));
         }
-        
+
+
+
     
         return view('homepage');
     }

@@ -72,8 +72,6 @@
             <li>Increased Usage of Livewire: Livewire has been further integrated throughout TaskShin, enhancing real-time interactivity and providing a more seamless user experience.</li>
           </ul>
         
-          <h3>Bug Fixes:</h3>
-          <p>Various bug fixes and performance optimizations have been implemented based on user feedback, ensuring a smoother and more reliable application.</p>
         </div>
         
 
@@ -129,12 +127,6 @@
             <ul>
                 <li>TaskShin's homepage now features a dedicated changelog section, keeping users informed about the
                     latest updates and improvements.</li>
-            </ul>
-
-            <h3>Bug Fixes:</h3>
-            <ul>
-                <li>Several bug fixes and performance enhancements have been implemented based on user feedback,
-                    ensuring a more stable and reliable application.</li>
             </ul>
         </div>
 

@@ -8,6 +8,12 @@
         </div>
     </div>
     <div class="note-board">
+        <div class="board-item" wire:click="newNote()" >
+            <a href="#">
+                <div class="new-item"></div>
+            </a>
+        </div>
+
         @foreach ($notes as $note)
             @livewire('cards.note-card', ['note' => $note], key($note->id))
         @endforeach

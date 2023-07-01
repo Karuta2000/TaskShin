@@ -1,15 +1,37 @@
 .bg-nav-app {
-    background-color: #0d1b20fa  !important;
+    background-color: #0d1b20ef !important;
     color: #00A8E8;
 }
 
 .bg-nav-app .btn-nav-app {
     color: #5edcffde;
     transition: 0.25s;
+    position: relative;
 }
 
 .bg-nav-app .btn-nav-app:hover {
     color: #5EDCFF;
+}
+
+.bg-nav-app .btn-nav-app::before {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0px;
+    background-color: #00A8E8;
+    display: block;
+    position: absolute;
+    content: "";
+    border-radius: 5px;
+    transition: 0.1s;
+}
+
+.bg-nav-app .btn-nav-app:hover::before {
+    height: 2px;
+}
+
+.bg-nav-app .btn-nav-app:hover::before {
+    height: 2px;
 }
 
 .bg-nav-app .btn-nav-app.active {
@@ -17,8 +39,7 @@
     position: relative;
 }
 
-.bg-nav-app .btn-nav-app.active::before
- {
+.bg-nav-app .btn-nav-app.active::before {
     bottom: 0;
     left: 0;
     width: 100%;
@@ -36,11 +57,15 @@
     border-radius: 50%;
     overflow: hidden;
     margin-right: 5px;
-  }
+}
 
 .avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-  
+
+
+.username {
+    font-size: 14px;
+}

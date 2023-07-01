@@ -27,7 +27,7 @@ class TagManager extends Component
 
     public function clearForm(){
         $this->name = null;
-        $this->color_id = null;
+        $this->color_id = Auth::user()->preferences->color_id;
         $this->tagId = null;
     }
 

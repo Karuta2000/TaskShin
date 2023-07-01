@@ -35,7 +35,6 @@
                 <div class="due-date">
                     {{ $task->getDueDate() }}
                 </div>
-                {{ $task->description }} <br>
                 @if ($task->project != null)
                     <a href="{{ route('projects.show', $task->project->id) }}">
                         <span class="badge rounded-pill project-pill"

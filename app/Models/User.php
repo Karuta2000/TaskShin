@@ -51,4 +51,8 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(ProfileSettings::class);
     }
+
+    public function preferences(){
+        return $this->hasOne(UserPreferences::class);
+    }
 }

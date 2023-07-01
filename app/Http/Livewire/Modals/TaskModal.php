@@ -15,7 +15,6 @@ class TaskModal extends Component
 
     public $title;
     public $due_date;
-    public $description;
     public $priority = 1;
     public $project;
 
@@ -58,7 +57,6 @@ class TaskModal extends Component
     private function setInputs(){
         $this->title = $this->task->name;
         $this->due_date = $this->task->due;
-        $this->description = $this->task->description;
         $this->priority = $this->task->priority;
         $this->project = $this->task->project_id;
         $this->color = $this->task->color_id;
@@ -73,7 +71,6 @@ class TaskModal extends Component
         }
         $this->task->name = $this->title;
         $this->task->due = $this->due_date;
-        $this->task->description = $this->description;
         $this->task->priority = $this->priority;
         $this->task->project_id = $this->project;
         $this->task->color_id = $this->color;
@@ -87,7 +84,6 @@ class TaskModal extends Component
     public function resetData(){
         $this->title = "";
         $this->due_date = "";
-        $this->description = "";
         $this->priority = 1;
         $this->project = null;
         $this->color = 1;
