@@ -54,6 +54,7 @@ class ImageModal extends Component
         $user->avatar = $this->image;
         $user->save();
         $this->emit('avatarChanged');
+        $this->emit('successMessage', 'Avatar changed successfully.');
 
     }
 
@@ -61,6 +62,7 @@ class ImageModal extends Component
         $thisImage = Image::where('id', $this->imageId)->first();
         $thisImage->delete();
         $this->emit('imageDeleted');
+        $this->emit('successMessage', 'Image deleted successfully.');
     }
 
     public function saveTags()

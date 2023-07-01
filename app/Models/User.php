@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -55,4 +56,39 @@ class User extends Authenticatable
     public function preferences(){
         return $this->hasOne(UserPreferences::class);
     }
+
+    public function projects(){
+        return $this->hasMany(Project::class);
+    }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
+
+    public function notes(){
+        return $this->hasMany(Note::class);
+    }
+
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
+
+    public function tags(){
+        return $this->hasMany(Tag::class);
+    }
+
+    public function registrationDate(){
+        $created = $this->attributes['created_at'];
+        $created = Carbon::createFromDate($created);
+        $registrationDate = $created->format('d/m/Y');
+        return $registrationDate;
+    }
+
+    public function sinceRegistration(){
+        $created = $this->attributes['created_at'];
+        $timeSinceRegistration = Carbon::parse($created)->diffForHumans(null, null, false, 1, null);
+        return $timeSinceRegistration;
+    }
+
+
 }

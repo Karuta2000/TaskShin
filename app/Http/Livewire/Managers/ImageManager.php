@@ -80,6 +80,7 @@ class ImageManager extends Component
             $image->user_id = Auth::id();
             $image->save();
             $this->clearForm();
+            $this->emit('successMessage', 'Image added successfully.');
         }
     }
 

@@ -5,6 +5,6 @@
 
     @livewire('app.settings.nav')
 
-    @livewire('app.settings.profile')
+    @livewire('app.settings.preferences')
 
 @endsection

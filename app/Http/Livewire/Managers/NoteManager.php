@@ -15,30 +15,41 @@ class NoteManager extends Component
     public $project;
     protected $listeners = ['noteUpdated', 'projectUpdated'];
 
+    public $settings = [
+        'panel' => true,
+        'newNote' => true,
+        'noNotes' => 50
+    ];
+
+
     public function render()
     {
         if($this->project != null){
             $notes = Note::where('user_id', Auth::id())->where('project_id', $this->project->id)->where(function ($query) {
                 $query->orWhere('title', 'LIKE', "%$this->searchTerm%")
                     ->orWhere('body', 'LIKE', "%$this->searchTerm%");
-            })->orderBy('updated_at', 'desc')->get();
+            })->orderBy('updated_at', 'desc')->limit($this->settings['noNotes'])->get();
         }
         else{
             $notes = Note::where('user_id', Auth::id())->where(function ($query) {
                 $query->orWhere('title', 'LIKE', "%$this->searchTerm%")
                     ->orWhere('body', 'LIKE', "%$this->searchTerm%");
-            })->orderBy('updated_at', 'desc')->get();
+            })->orderBy('updated_at', 'desc')->limit($this->settings['noNotes'])->get();
         }
  
         return view('livewire.managers.note-manager', ['notes' => $notes]);
     }
 
-    public function noteUpdated(){
+
+    public function mount(){
         
     }
 
+    public function noteUpdated(){    
+    }
+
     public function projectUpdated(){
-        
+      
     }
     
     public function newNote(){
@@ -51,7 +62,6 @@ class NoteManager extends Component
         else{
             $note->project_id = $this->project->id;
         }
-
         $note->user_id = Auth::id();
         $note->color_id = 1;
         $note->save();

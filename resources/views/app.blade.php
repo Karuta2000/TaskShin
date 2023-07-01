@@ -29,6 +29,8 @@
     </div>
 
 
+    @livewire('app.success-toast')
+
 
 
 
@@ -39,6 +41,14 @@
     <livewire:scripts />
 	<script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
 
+    <script>
+        document.addEventListener('livewire:load', function () {
+            Livewire.on('show-success-toast', function () {
+                var successToast = new bootstrap.Toast(document.querySelector('.toast'));
+                successToast.show();
+            });
+        });
+    </script>
 </body>
 
 </html>

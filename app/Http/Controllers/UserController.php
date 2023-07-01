@@ -33,6 +33,11 @@ class UserController extends Controller
         return view('users.settings.avatar');
     }
 
+    public function showPreferencesSettings()
+    {
+        return view('users.settings.preferences');
+    }
+
 
     public function dashboard(){
         

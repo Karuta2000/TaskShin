@@ -1,4 +1,4 @@
-<div>
+<div class="my-4">
 
     <div class="p-2 shadow-sm rounded mb-3 bg-blur">
         <a href="{{ route('projects.create') }}" class="btn"><i class="fa fa-plus" aria-hidden="true"

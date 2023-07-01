@@ -23,11 +23,10 @@
             </div>
             <div class="task-header">
                 @if ($editingTitle)
-                    <input type="text" name="" id="" class="form-control p-0 h-auto b-0 bg-transparent" wire:model="title" wire:change="saveTitle">
+                    <textarea class="form-control p-0 h-auto b-0 bg-transparent h-100" wire:model="title" wire:change="saveTitle"></textarea>
                 @else
                     <h5 class="task-title" wire:click="editTitle">{{ Illuminate\Support\Str::limit($task->name, 60, '...') }}</h5>
                 @endif
-
 
             </div>
 

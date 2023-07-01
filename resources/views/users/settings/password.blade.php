@@ -3,22 +3,7 @@
 @section('content')
     <h1>User settings</h1>
 
-    <nav class="p-2 shadow-sm navbar-expand-lg rounded mb-3 px-3 navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
-        <ul class="navbar-nav nav-dark">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('user.settings.user') }}">User</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ route('user.settings.password') }}">Password</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('user.settings.profile') }}">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('user.settings.avatar') }}">Avatar</a>
-            </li>
-        </ul>
-    </nav>
+    @livewire('app.settings.nav')
 
 
     <div class="container">

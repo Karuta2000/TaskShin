@@ -26,6 +26,7 @@
             </div>
             <div class="col-6 text-end">
 
+                @if ($note->user_id == auth()->id())
                 <div class="dropstart">
                     <button class="btn btn-sm btn-link" type="button"
                         style=" color: {{ $color->darkText ? '#000000' : '#FFFFFF' }}"
@@ -70,6 +71,9 @@
                         @endif
                     </div>
                 </div>
+                @endif
+
+
             </div>
         </div>
     </div>
