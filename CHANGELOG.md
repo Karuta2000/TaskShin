@@ -1,5 +1,14 @@
 # Release Notes
 
+## v0.5.1 - 2023-07-02
+
+Changelog for TaskShin v0.5.1 - Released on July 2, 2023:
+
+### Bug Fixes:
+
+- Note Editing Error: An issue where notes couldn't be edited has been resolved. Users can now edit their notes as intended.
+- Tasks Title Editing: A bug that prevented users from directly changing the task title has been fixed. Users can now update the task title without any issues.
+
 ## v0.5 - 2023-07-02
 
 Changelog for TaskShin v0.5 - Released on July 2, 2023:
