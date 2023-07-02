@@ -45,6 +45,12 @@ class TaskCard extends Component
         $this->title = $this->task->name;
     }
 
+    public function saveTitle(){
+        $this->task->name = $this->title;
+        $this->task->save();
+        $this->editingTitle = false;
+    }
+
     public function taskUpdated(){
         
     }
