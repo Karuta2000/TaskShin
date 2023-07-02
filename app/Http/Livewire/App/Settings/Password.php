@@ -2,22 +2,20 @@
 
 namespace App\Http\Livewire\App\Settings;
 
-use App\Models\User as ModelsUser;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
-class User extends Component
+class Password extends Component
 {
-    public $user;
-
     public $password;
+    public $newPassword;
+    public $newPassword_confirmation;
 
     protected function rules()
     {
         return [
-            'user.email' => 'required',
-            'user.name' => ['required', 'string', 'max:255', 'min: 4'],
             'password' => [
                 'required',
                 function ($attribute, $value, $fail) {
@@ -27,36 +25,33 @@ class User extends Component
                     }
                 },
             ],
+            'newPassword' => ['required', 'string', 'min:8', 'confirmed']
         ];
     }
-    
+
+
     public function render()
     {
-        return view('livewire.app.settings.user');
+        return view('livewire.app.settings.password');
     }
-
-    public function mount(){
-        $this->user = ModelsUser::findOrFail(Auth::id());
-    }
-
 
     public function saveChanges()
     {
-
         $this->validate();
 
-        $passwordValid = Hash::check($this->password, $this->user->password);
+        $user = User::findOrFail(Auth::id());
+        $user->password = Hash::make($this->newPassword);
+        $user->save();
 
-        if (!$passwordValid) {
-            $this->emit('successMessage', 'error');
-            $this->password = "";
-        }
+        $this->resetFields();
 
-        $this->user->save();
-
-        $this->password = "";
-
-        $this->emit('successMessage', 'User saved successfully.');
+        $this->emit('successMessage', 'Password changed successfully.');
     }
 
+    private function resetFields()
+    {
+        $this->password = null;
+        $this->newPassword = null;
+        $this->newPassword_confirmation = null;
+    }
 }

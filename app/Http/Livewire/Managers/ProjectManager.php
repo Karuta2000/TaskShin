@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Managers;
 
 use Livewire\Component;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Str;
 
@@ -14,10 +15,17 @@ class ProjectManager extends Component
 
     public $count;
 
-    public $sortBy = 'name';
+    public $sortBy;
+
+    public $user;
 
     public function render()
     {
+
+        $this->user->preferences->projectSortBy = $this->sortBy;
+        $this->user->preferences->save();
+
+
         if($this->count == null){
             $this->count = 99;
         }
@@ -31,6 +39,11 @@ class ProjectManager extends Component
         }
 
         return view('livewire.managers.project-manager', ['projects' => $projects]);
+    }
+
+    public function mount(){
+        $this->user = User::findOrFail(Auth::id());
+        $this->sortBy = $this->user->preferences->projectSortBy;
     }
 
     

@@ -12,10 +12,8 @@
         </li>
         <li><a class="dropdown-item" href="{{ route('tags') }}"><i class="fa fa-tags"
             aria-hidden="true"></i> Tags</a></li>
-        <li><a class="dropdown-item" href="{{ route('user.settings.user') }}"><i class="fa fa-cog"
+        <li><a class="dropdown-item" href="{{ route('user.settings') }}"><i class="fa fa-cog"
                     aria-hidden="true"></i> Settings</a></li>
-        <li><a class="dropdown-item" href="{{ route('user.settings.preferences') }}"><i class="fa fa-user"
-                    aria-hidden="true"></i> Preferences</a></li>
         <li><a class="dropdown-item"
                 href="{{ route('logout') }}"onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"><i

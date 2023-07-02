@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Modals;
 
 use App\Models\Color;
 use App\Models\Project;
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
@@ -12,25 +13,21 @@ class TaskModal extends Component
 {
 
     public $task;
-
-    public $title;
-    public $due_date;
-    public $priority = 1;
-    public $project;
-
-    public $color = 1;
-    
     public $allColors;
     public $yourProjects;
 
+    public $newTask = false;
 
     public function rules()
     {
         return [
-            'title' => 'required|max:45',
+            'task.name' => 'required|max:45',
+            'task.due' => 'nullable',
+            'task.priority' => 'min:1|max:10',
+            'task.project_id' => 'nullable',
+            'task.color_id' => 'required'
         ];
     }
-
 
     protected $listeners = ['openEditTaskModal', 'openNewTaskModal'];
 
@@ -44,48 +41,27 @@ class TaskModal extends Component
     public function openEditTaskModal($taskId)
     {
         $this->task = Task::findOrFail($taskId);
-        $this->setInputs();
+        $this->newTask = false;
         $this->emit('openTaskModal');
     }
     
     public function openNewTaskModal()
     {
-        $this->task = null;
+        $this->task = new Task;
+        $this->newTask = true;
         $this->emit('openTaskModal');
-    }
-
-    private function setInputs(){
-        $this->title = $this->task->name;
-        $this->due_date = $this->task->due;
-        $this->priority = $this->task->priority;
-        $this->project = $this->task->project_id;
-        $this->color = $this->task->color_id;
-    }
-    
+    }   
 
     public function taskSave(){
         $this->validate();
-        if($this->task == null){
-            $this->task = new Task;
-            $this->task->user_id = Auth::id();
-        }
-        $this->task->name = $this->title;
-        $this->task->due = $this->due_date;
-        $this->task->priority = $this->priority;
-        $this->task->project_id = $this->project;
-        $this->task->color_id = $this->color;
         $this->task->save();
-        $this->emit('taskUpdated');
+        if($this->newTask){
+            $this->emit('boardUpdated');
+        }
+            $this->emit('taskUpdated');
         $this->emit('closeTaskModal');
-        $this->resetData();
     }
 
 
-    public function resetData(){
-        $this->title = "";
-        $this->due_date = "";
-        $this->priority = 1;
-        $this->project = null;
-        $this->color = 1;
-    }
+
 }

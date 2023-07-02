@@ -18,6 +18,11 @@ class UserController extends Controller
         return view('users.settings.user');
     }
 
+    public function showSettings()
+    {
+        return view('users.settings.main');
+    }
+
     public function showPasswordSettings()
     {
         return view('users.settings.password');

@@ -31,7 +31,7 @@
                     <button class="btn btn-sm btn-link" type="button"
                         style=" color: {{ $color->darkText ? '#000000' : '#FFFFFF' }}"
                         id="note{{ $note->id }}Actions" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </button>
 
                     <div class="dropdown-menu mb-2" aria-labelledby="note{{ $note->id }}Actions" wire:ignore style="max-height: 200px; overflow-y: auto; overflow-x: hidden">
