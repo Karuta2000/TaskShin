@@ -1,5 +1,39 @@
 # Release Notes
 
+## v0.5 - 2023-07-02
+
+Changelog for TaskShin v0.5 - Released on July 2, 2023:
+
+### Updated Profile Page:
+
+- The profile page has been updated to provide more comprehensive personal information, including a description and relevant statistics.
+
+### Dynamic Settings:
+
+- TaskShin's settings feature has been enhanced to offer a more dynamic and user-friendly experience.
+- Preferences: A new section called "Preferences" has been added to the settings, allowing users to set default values for tasks and notes for a more streamlined workflow.
+- Profile Settings: The settings now include a dedicated "Profile Settings" page, making it easier for users to modify their profile information.
+
+### Task and Note Updates:
+
+- Small updates have been made to the tasks and notes functionality, improving their overall usability and performance.
+
+### Toast Notifications for Successful Changes:
+
+- After saving settings, a toast notification now appears in the bottom-right corner, informing the user about the successful changes made.
+
+### Note Manager Improvement:
+
+- The note manager has been improved to enhance its functionality and user experience.
+
+### Code Optimization:
+
+- The codes in various components have been optimized for better performance and efficiency.
+
+### Tag Placement:
+
+- The tag feature has been moved from the navbar to the user dropdown menu, offering a more streamlined and organized navigation experience.
+
 ## v0.4 - 2023-06-29
 
 Changelog for TaskShin v0.4 - Released on June 29, 2023:
