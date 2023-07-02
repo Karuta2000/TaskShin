@@ -26,8 +26,45 @@
     <x-navbar />
     <!-- End Navbar -->
 
+
+
+
     <div class="container">
         <h1 class="my-5">Changelog</h1>
+        <div class="changelog-entry">
+            <h2>v0.5</h2>
+
+            <p>Released on July 2, 2023:</p>
+            <h3>Updated Profile Page:</h3>
+            <p>The profile page has been updated to provide more comprehensive personal information, including a
+                description and relevant statistics.</p>
+
+            <h3>Dynamic Settings:</h3>
+            <ul>
+                <li>Preferences: A new section called "Preferences" has been added to the settings, allowing users to
+                    set default values for tasks and notes for a more streamlined workflow.</li>
+                <li>Profile Settings: The settings now include a dedicated "Profile Settings" page, making it easier for
+                    users to modify their profile information.</li>
+            </ul>
+
+            <h3>Task and Note Updates:</h3>
+            <p>Small updates have been made to the tasks and notes functionality, improving their overall usability and
+                performance.</p>
+
+            <h3>Toast Notifications for Successful Changes:</h3>
+            <p>After saving settings, a toast notification now appears in the bottom-right corner, informing the user
+                about the successful changes made.</p>
+
+            <h3>Note Manager Improvement:</h3>
+            <p>The note manager has been improved to enhance its functionality and user experience.</p>
+
+            <h3>Code Optimization:</h3>
+            <p>The codes in various components have been optimized for better performance and efficiency.</p>
+
+            <h3>Tag Placement:</h3>
+            <p>The tag feature has been moved from the navbar to the user dropdown menu, offering a more streamlined and
+                organized navigation experience.</p>
+        </div>
 
         <div class="changelog-entry">
             <h2>v0.4</h2>
@@ -57,23 +94,30 @@
 
 
         <div class="changelog-entry">
-          <h2>v0.3</h2>
-          <p>Released on June 28, 2023</p>
-          <h3>New Features:</h3>
-          <ul>
-            <li>Improved Notes: Notes have undergone significant improvements, making it easier to add and edit them. The cumbersome use of modals has been eliminated, allowing users to work directly with each note.</li>
-            <li>Images: TaskShin now supports images as a new feature. Users can save images on a dedicated page, although currently, only viewing functionality is available. Additional features related to images will be introduced in future updates.</li>
-          </ul>
-        
-          <h3>Enhancements:</h3>
-          <ul>
-            <li>Design Improvements: The navbar and overall design of TaskShin have been enhanced. The main colors of the page now align with the colors of the logo, creating a more cohesive visual experience.</li>
-            <li>Removal of Unused Files and Components: Outdated and unused files and components have been removed, optimizing the application's codebase and improving performance.</li>
-            <li>Increased Usage of Livewire: Livewire has been further integrated throughout TaskShin, enhancing real-time interactivity and providing a more seamless user experience.</li>
-          </ul>
-        
+            <h2>v0.3</h2>
+            <p>Released on June 28, 2023</p>
+            <h3>New Features:</h3>
+            <ul>
+                <li>Improved Notes: Notes have undergone significant improvements, making it easier to add and edit
+                    them. The cumbersome use of modals has been eliminated, allowing users to work directly with each
+                    note.</li>
+                <li>Images: TaskShin now supports images as a new feature. Users can save images on a dedicated page,
+                    although currently, only viewing functionality is available. Additional features related to images
+                    will be introduced in future updates.</li>
+            </ul>
+
+            <h3>Enhancements:</h3>
+            <ul>
+                <li>Design Improvements: The navbar and overall design of TaskShin have been enhanced. The main colors
+                    of the page now align with the colors of the logo, creating a more cohesive visual experience.</li>
+                <li>Removal of Unused Files and Components: Outdated and unused files and components have been removed,
+                    optimizing the application's codebase and improving performance.</li>
+                <li>Increased Usage of Livewire: Livewire has been further integrated throughout TaskShin, enhancing
+                    real-time interactivity and providing a more seamless user experience.</li>
+            </ul>
+
         </div>
-        
+
 
 
         <div class="changelog-entry">
