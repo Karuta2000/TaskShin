@@ -15,7 +15,29 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'project_id', 'due', 'completed', 'user_id', 'priority', 'color_id)'];
+    protected $fillable = ['name', 'project_id', 'due', 'completed', 'user_id', 'priority', 'color_id)'];
+
+
+    protected function defaultAttributes()
+    {
+        $defaultDue = Auth::user()->preferences->setDate == 1 ? Carbon::today()->format('y-m-d') : null;
+
+        return [
+            'name' => 'New task',
+            'project_id' => null,
+            'due' => $defaultDue,
+            'user_id' => Auth::id(),
+            'priority' => Auth::user()->preferences->priority,
+            'color_id' => Auth::user()->preferences->color_id,
+        ];
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->attributes = $this->defaultAttributes();
+    }
 
     protected $primaryKey = 'id';
 

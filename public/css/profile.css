@@ -1,0 +1,28 @@
+.profile-banner {
+    height: 300px;
+    background-image: url('path/to/your/banner-image.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .profile-container {
+    text-align: center;
+  }
+  
+  .profile-nickname {
+    font-size: 34px;
+    margin-top: 20px;
+  }
+  
+  .profile-info {
+    margin-top: 20px;
+    transform: translateY(-170px);
+}
+  
+.profile-card {
+  background-color: #FFFFFFE1 !important;
+}
+
+.profile-card * {
+  background: transparent !important;
+}

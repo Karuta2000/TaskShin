@@ -13,6 +13,10 @@
             </div>
     
             <div class="input-group flex-grow-2" style="margin-left: 30%">
+                <select class="form-select" wire:model="sortBy" aria-label="Sort by">
+                    <option value="created_at" selected>Sort by newest</option>
+                    <option value="views">Sort by most viewed</option>
+                </select>
                 <input type="text" id="searchInput" class="form-control" wire:model="searchTerm"
                     style="{{ \Illuminate\Support\Str::startsWith($searchTerm, '#') ? 'background-color: #BBC2E2' : '' }}"
                     placeholder="Search...">

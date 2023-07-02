@@ -37,3 +37,13 @@
 .project-info {
   margin-top: 10px;
 }
+
+.board-item .project-card{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backdrop-filter: blur(40px);
+}

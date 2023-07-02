@@ -1,5 +1,6 @@
 <div class="board-item shadow">
-    <div class="task-card shadow round-4 bg-blur-task bg-gradient" style="background-color: #{{ $task->color->HEX }}99; color: {{ $task->color->darkText ? '#000000' : '#FFFFFF' }}">
+    <div class="task-card shadow round-4 bg-blur-task bg-gradient"
+        style="background-color: #{{ $task->color->HEX }}99; color: {{ $task->color->darkText ? '#000000' : '#FFFFFF' }}">
         <div class="task-card-panel"></div>
         <div>
             <div class="float-end">
@@ -12,7 +13,8 @@
                                 aria-hidden="true"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="task{{ $task->id }}Actions" wire:ignore>
-                            <li><a class="dropdown-item" wire:click="$emit('openEditTaskModal', '{{ $task->id }}')" href="#">Update</a>
+                            <li><a class="dropdown-item" wire:click="$emit('openEditTaskModal', '{{ $task->id }}')"
+                                    href="#">Update</a>
                             </li>
                             <li><a class="dropdown-item" wire:click="delete()" href="#">Delete</a>
                             </li>
@@ -23,11 +25,11 @@
             </div>
             <div class="task-header">
                 @if ($editingTitle)
-                    <input type="text" name="" id="" class="form-control p-0 h-auto b-0 bg-transparent" wire:model="title" wire:change="saveTitle">
+                    <textarea class="form-control p-0 h-auto b-0 bg-transparent h-100" wire:model="title" wire:change="saveTitle"></textarea>
                 @else
-                    <h5 class="task-title" wire:click="editTitle">{{ Illuminate\Support\Str::limit($task->name, 60, '...') }}</h5>
+                    <h5 class="task-title" wire:click="editTitle">
+                        {{ Illuminate\Support\Str::limit($task->name, 60, '...') }}</h5>
                 @endif
-
 
             </div>
 
@@ -35,7 +37,6 @@
                 <div class="due-date">
                     {{ $task->getDueDate() }}
                 </div>
-                {{ $task->description }} <br>
                 @if ($task->project != null)
                     <a href="{{ route('projects.show', $task->project->id) }}">
                         <span class="badge rounded-pill project-pill"
@@ -63,7 +64,7 @@
                     <div class="float-end">
                         <div class="input-group">
                             <div class="form-check">
-                                <input type="checkbox" class="custom-control-input" wire:model="completed"
+                                <input type="checkbox" class="custom-control-input" wire:model="task.completed"
                                     id="task{{ $task->id }}Checkbox" wire:click="complete()">
                                 <label class="custom-control-label rounded task-checkbox"
                                     for="task{{ $task->id }}Checkbox"></label>
@@ -74,5 +75,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

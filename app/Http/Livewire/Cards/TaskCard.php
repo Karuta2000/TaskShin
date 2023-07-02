@@ -8,8 +8,6 @@ class TaskCard extends Component
 {
 
     public $task;
-    public $completed;
-
     public $editingTitle = false;
 
     public $title;
@@ -23,17 +21,11 @@ class TaskCard extends Component
 
     public function render()
     {
-
         return view('livewire.cards.task-card');
     }
 
-    public function mount(){
-        $this->completed = $this->task->completed;
-    }
-
-
     public function complete(){
-        if($this->completed == 0){
+        if($this->task->completed == 0){
             $this->task->completed = 0;
         }
         else{
@@ -53,13 +45,8 @@ class TaskCard extends Component
         $this->title = $this->task->name;
     }
 
-    public function saveTitle(){
-        $this->editingTitle = false;
-        $this->task->name = $this->title;
-        $this->task->save();
+    public function taskUpdated(){
+        
     }
 
-    public function taskUpdated(){
-        $this->emit('boardUpdated');
-    }
 }

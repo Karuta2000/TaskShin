@@ -48,15 +48,15 @@
 
 .task-header {
   display: flex;
-  align-items: center;
-  height: 40px;
+  align-items: start;
+  height: 70px;
 }
 
 
 
 .task-details {
   flex: 1;
-  height: 70px;
+  height: 40px;
 }
 
 .task-title {
@@ -67,7 +67,6 @@
 .due-date {
   font-size: 12px;
   margin: 0;
-  color: #888888;
 }
 
 .task-checkbox {

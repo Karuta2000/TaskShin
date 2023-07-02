@@ -45,7 +45,7 @@ class TagManagement extends Component
     {
         $tag = new Tag;
         $tag->name = $this->searchTerm;
-        $tag->color_id = 1;
+        $tag->color_id = Auth::user()->preferences->color_id;;
         $tag->user_id = Auth::id();
         $tag->save();
         $this->image->tags()->attach($tag->id);

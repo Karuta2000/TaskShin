@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Oauth\LoginController;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +50,12 @@ Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('
 Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
 Route::middleware(['auth'])->group(function () {
+
+
+    //Route::get('/', [AppController::class, 'app'])->name('home');
+
+
+    
     // Only authenticated users can access these routes
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
@@ -60,15 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/gallery', [ImageController::class, 'index'])->name('gallery');
     Route::get('/notes', [NoteController::class, 'index'])->name('notes');
 
-
-    Route::get('/user/settings/user', [UserController::class, 'showUserSettings'])->name('user.settings.user');
-    Route::get('/user/settings/password', [UserController::class, 'showPasswordSettings'])->name('user.settings.password');
-    Route::get('/user/settings/profile', [UserController::class, 'showProfileSettings'])->name('user.settings.profile');
-    Route::get('/user/settings/avatar', [UserController::class, 'showAvatarSettings'])->name('user.settings.avatar');
-    Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
-    Route::put('/user/update/password', [UserController::class, 'updatePassword'])->name('user.update.password');
-    Route::put('/user/update/profile', [UserController::class, 'updateProfile'])->name('user.update.profile');
-    Route::put('/user/update/avatar', [UserController::class, 'updateAvatar'])->name('user.update.avatar');
+    Route::get('/user/settings', [UserController::class, 'showSettings'])->name('user.settings');
     Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
 
     Route::prefix('projects')->group(function (){

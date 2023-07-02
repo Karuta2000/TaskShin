@@ -10,19 +10,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" wire:model="title">
+                        <input type="text" class="form-control" id="title" wire:model="task.name">
                     </div>
                     <div class="form-group">
                         <label for="due_date">Due Date</label>
-                        <input type="date" class="form-control" id="due_date" wire:model="due_date">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" id="description" rows="3" wire:model="description"></textarea>
+                        <input type="date" class="form-control" id="due_date" wire:model="task.due">
                     </div>
                     <div class="form-group">
                         <label for="priority">Priority</label>
-                        <select class="form-control" id="priority" wire:model="priority">
+                        <select class="form-control" id="priority" wire:model="task.priority">
                             @for ($i = 1; $i <= 10; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
@@ -30,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="colors">Colors</label>
-                        <select class="form-control" id="colors" wire:model="color">
+                        <select class="form-control" id="colors" wire:model="task.color_id">
                             @foreach ($allColors as $oneColor)
                                 <option value="{{ $oneColor->id }}" style="color: {{ $oneColor->HEX }}">
                                     {{ $oneColor->name }}</option>
@@ -39,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="projects">Projects</label>
-                        <select class="form-control" id="projects" wire:model="project">
+                        <select class="form-control" id="projects" wire:model="task.project_id">
                             <option value="">No project</option>
                             @foreach ($yourProjects as $oneProject)
                                 <option value="{{ $oneProject->id }}">{{ $oneProject->name }}</option>
@@ -54,7 +50,6 @@
             </div>
         </div>
     </div>
-
 
     <script>
         document.addEventListener('livewire:load', function() {

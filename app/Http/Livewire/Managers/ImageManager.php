@@ -15,21 +15,25 @@ class ImageManager extends Component
 
     public $searchTerm = "";
 
+    public $user; 
+    public $sortBy;
+
     protected $listeners = ['imageAdded', 'imageDeleted'];
 
-    
     public $url;
 
     public function render()
     {
-        if($this->searchTerm == ""){
-            $images = Image::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
-    
-        }
-        else {
+
+        $this->user->preferences->imageSortBy = $this->sortBy;
+        $this->user->preferences->save();
+
+        if ($this->searchTerm == "") {
+            $images = Image::where('user_id', Auth::id())->orderBy($this->sortBy, $this->getSorting($this->sortBy))->get();
+        } else {
             $images = Image::where('user_id', Auth::id())->WhereHas('tags', function ($query) {
-                $query->where('name', 'like', "%".ltrim($this->searchTerm, '#')."%");
-            })->orderBy('created_at', 'desc')->get();
+                $query->where('name', 'like', "%" . ltrim($this->searchTerm, '#') . "%");
+            })->orderBy($this->sortBy, $this->getSorting($this->sortBy))->get();
         }
 
 
@@ -47,37 +51,53 @@ class ImageManager extends Component
                 'query' => request()->query(),
             ]
 
-    );
-
-
+        );
 
         return view('livewire.managers.image-manager', [
             'images' => $paginator
         ]);
     }
 
-    public function imageAdded(){
-
+    public function mount(){
+        $this->user = Auth::user();
+        $this->sortBy = $this->user->preferences->imageSortBy;
     }
 
-    public function imageDeleted(){
-        
+    public function imageAdded()
+    {
     }
 
-    public function storeImage(){
-        if($this->url != null){
-            $image = New Image;
+    public function imageDeleted()
+    {
+        $this->render();
+    }
+
+    public function storeImage()
+    {
+        if ($this->url != null) {
+            $image = new Image;
             $image->url = $this->url;
             $image->user_id = Auth::id();
             $image->save();
             $this->clearForm();
+            $this->emit('successMessage', 'Image added successfully.');
         }
     }
 
-    private function clearForm(){
+    private function clearForm()
+    {
         $this->url = "";
     }
 
+    private function getSorting($atribute){
+        $sortByAsc = [];
 
+        if(in_array($atribute, $sortByAsc)) {
+            return 'asc';
+        }
+        else {
+            return 'desc';
+        }
 
+    }
 }

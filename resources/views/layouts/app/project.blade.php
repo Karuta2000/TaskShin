@@ -30,7 +30,7 @@
 
 <body class="bg-light bg-gradient">
 
-    <x-app.navbar />
+    @livewire('app.navbar.main')
 
     <div>
 

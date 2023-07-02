@@ -29,14 +29,17 @@ class NoteCard extends Component
     }
 
     public function edit(){
-        if($this->edit){
-            $this->update();
+        if($this->note->user_id != Auth::id()){
+            if($this->edit){
+                $this->update();
+            }
+            else{
+                $this->title = $this->note->title;
+                $this->body = $this->note->body;
+                $this->edit = true;
+            }
         }
-        else{
-            $this->title = $this->note->title;
-            $this->body = $this->note->body;
-            $this->edit = true;
-        }
+
     }
 
     private function update(){

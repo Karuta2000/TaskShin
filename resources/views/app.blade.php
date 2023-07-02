@@ -14,21 +14,12 @@
     
 
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: Roboto;
-            src: url('{{ asset('fonts/roboto/Roboto-Regular.ttf') }}');
-        }
 
-        * {
-            font-family: Roboto, sans-serif;
-        }
-    </style>
 </head>
 
 <body class="app-background" style="background-image: url('{{ asset('images/background.jpg') }}')">
 
-    @livewire('app.navbar')
+    @livewire('app.navbar.main')
 
     
 
@@ -39,20 +30,7 @@
     </div>
 
 
-    @isset($success)
-        <div id="myToast" class="toast position-fixed" style="right: 20px; bottom: 20px" role="alert"
-            aria-live="assertive" aria-atomic="true" data-delay="5000">
-            <div class="toast-header bg-dark">
-                <strong class="mr-auto text-light">Upozornění</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                {{ $success }}
-            </div>
-        </div>
-    @endisset
+    @livewire('app.success-toast')
 
 
 
@@ -62,18 +40,16 @@
     <script src="{{ asset('js/bootstrap 4.6.2/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.js') }}"></script>
     <livewire:scripts />
-
 	<script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
-    @isset($success)
-        <script>
-            var toast = document.getElementById('myToast');
-            var bootstrapToast = new bootstrap.Toast(toast);
-            bootstrapToast.show();
-        </script>
-    @endisset
 
-
-
+    <script>
+        document.addEventListener('livewire:load', function () {
+            Livewire.on('show-success-toast', function () {
+                var successToast = new bootstrap.Toast(document.querySelector('.toast'));
+                successToast.show();
+            });
+        });
+    </script>
 </body>
 
 </html>
