@@ -7,7 +7,11 @@
 
     @foreach ($pages as $page)
         @if ($page == $activePage)
-            @livewire('app.settings.' . $page, [], key($page))
+            <div class="row justify-content-center">
+                <div class="col-md-10 card py-5 shadow">
+                    @livewire('app.settings.' . $page, [], key($page))
+                </div>
+            </div>
         @endif
     @endforeach
 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\ProfileSettings;
+use App\Models\UserPreferences;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -55,6 +56,18 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        if(Auth::user()->preferences == null){
+            $preferences = new UserPreferences;
+            $preferences->user_id = Auth::id();
+            $preferences->save();
+        }
+
+        if(Auth::user()->profile == null){
+            $profile = new ProfileSettings();
+            $profile->user_id = Auth::id();
+            $profile->save();
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }

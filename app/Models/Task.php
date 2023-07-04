@@ -20,6 +20,19 @@ class Task extends Model
 
     protected function defaultAttributes()
     {
+
+        if(Auth::user()->preferences == null){
+            $preferences = new UserPreferences;
+            $preferences->user_id = Auth::id();
+            $preferences->save();
+        }
+
+        if(Auth::user()->profile == null){
+            $profile = new ProfileSettings();
+            $profile->user_id = Auth::id();
+            $profile->save();
+        }
+        
         $defaultDue = Auth::user()->preferences->setDate == 1 ? Carbon::today()->format('y-m-d') : null;
 
         return [
@@ -79,5 +92,9 @@ class Task extends Model
         } else {
             return $dueDate->isoFormat('MMMM D');
         }
+    }
+
+    public function list(){
+        return $this->belongsTo(TaskList::class);
     }
 }

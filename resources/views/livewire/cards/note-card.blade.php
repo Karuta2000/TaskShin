@@ -1,5 +1,5 @@
 <div class="board-item shadow">
-    <div class="card note-card note border-0 rounded shadow mb-5 mx-auto bg-gradient"
+    <div class="card note-card note border-0 rounded shadow mb-5 mx-auto bg-gradient {{ $note->archived ? 'archived' : '' }}"
         style="background-color: #{{ $color->HEX }}; color: {{ $color->darkText ? '#000000' : '#FFFFFF' }}">
         <div class="card-body p-3" wire:click="edit()">
             @if ($edit)
@@ -39,6 +39,8 @@
                                 aria-hidden="true"></i> Delete</a>
                         <a class="dropdown-item" wire:click="copy()" href="#"><i class="fa fa-copy"
                                 aria-hidden="true"></i> Copy</a>
+                                <a class="dropdown-item" wire:click="archive()" href="#"><i class="fa fa-copy"
+                                    aria-hidden="true"></i> Archive</a>
                         <div class="dropdown-divider"></div>
                         <div>
                             <select class="form-select rounded-0 border-0" wire:model="project_id"

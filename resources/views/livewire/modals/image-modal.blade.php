@@ -19,12 +19,20 @@
                             data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="image{{ $shownImage->id }}Actions">
-                            <li><a class="dropdown-item" href="#" onclick="callLivewireMethod('setAvatar')">
-                                <i class="fa fa-user" aria-hidden="true"></i> Set avatar
-                            </a>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="callLivewireMethod('setAvatar')">
+                                    <i class="fa fa-user" aria-hidden="true"></i> Set avatar
+                                </a>
                             </li>
-                            <li><a class="dropdown-item" href="#"
-                                    onclick="callLivewireMethod('delete')"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                            <li>
+                                <a class="dropdown-item" href="#" wire:click='setBanner'>
+                                    <i class="fa fa-image-o" aria-hidden="true"></i> Set banner
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="callLivewireMethod('delete')">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                </a>
                             </li>
                             <div class="dropdown-divider mb-0"></div>
                             <div>

@@ -43,7 +43,7 @@
                     <div class="col-md-6">
                         <div class="card px-5 pb-5 pt-4 round shadow h-100 profile-card">
                             <h4 class="mb-4">Description:</h4>
-                            {{ $user->profile->description }}
+                            {!! $user->profile->description !!}
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -92,6 +92,5 @@
         </div>
 
 
-    </div>
     </div>
 @endsection

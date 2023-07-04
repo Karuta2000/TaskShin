@@ -55,7 +55,13 @@ class ImageModal extends Component
         $user->save();
         $this->emit('avatarChanged');
         $this->emit('successMessage', 'Avatar changed successfully.');
+    }
 
+    public function setBanner(){
+        $user = User::findOrFail(Auth::id());
+        $user->profile->banner = $this->image;
+        $user->profile->save();
+        $this->emit('successMessage', 'Banner changed successfully.');
     }
 
     public function delete(){
@@ -69,6 +75,7 @@ class ImageModal extends Component
     {
         $image = Image::where('id', $this->imageId)->first();
         $image->tags()->sync($this->selectedTags);
+        $this->emit('successMessage', 'Tag set successfully.');
     }
 
 

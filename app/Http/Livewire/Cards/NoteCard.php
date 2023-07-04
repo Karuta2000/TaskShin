@@ -28,38 +28,44 @@ class NoteCard extends Component
         return view('livewire.cards.note-card');
     }
 
-    public function edit(){
-        if($this->note->user_id == Auth::id()){
-            if($this->edit){
-                $this->update();
-            }
-            else{
-                $this->title = $this->note->title;
-                $this->body = $this->note->body;
-                $this->edit = true;
+    public function edit()
+    {
+
+        if ($this->note->archived == 0) {
+            if ($this->note->user_id == Auth::id()) {
+                if ($this->edit) {
+                    $this->update();
+                } else {
+                    $this->title = $this->note->title;
+                    $this->body = $this->note->body;
+                    $this->edit = true;
+                }
             }
         }
-
     }
 
-    private function update(){
+    private function update()
+    {
         $this->note->title = $this->title;
-        $this->note->body = $this->body; 
+        $this->note->body = $this->body;
     }
 
-    public function save(){
+    public function save()
+    {
         $this->update();
         $this->edit = false;
         $this->note->save();
     }
 
-    public function delete(){
+    public function delete()
+    {
         $this->note->delete();
         $this->emit('noteUpdated');
     }
 
-    public function copy(){
-        $note = new Note();     
+    public function copy()
+    {
+        $note = new Note();
         $note->title = $this->note->title;
         $note->body = $this->note->body;
         $note->project_id = $this->note->project_id;
@@ -69,23 +75,34 @@ class NoteCard extends Component
         $this->emit('noteUpdated');
     }
 
-    public function loadColors(){
+    public function loadColors()
+    {
         $this->colors = Color::all();
-
     }
 
-    public function setColor($color_id){
+    public function setColor($color_id)
+    {
         $this->note->color_id = $color_id;
         $this->note->save();
     }
 
-    public function setProject(){
+    public function setProject()
+    {
         $this->note->project_id = $this->project_id;
         $this->note->save();
         $this->emit('projectUpdated');
     }
 
 
+    public function archive()
+    {
+        if ($this->note->archived == 0) {
+            $this->note->archived = 1;
+        } else {
+            $this->note->archived = 0;
+        }
 
-
+        $this->note->save();
+        $this->emit('noteUpdated');
+    }
 }

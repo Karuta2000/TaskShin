@@ -12,7 +12,7 @@ class Note extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'body', 'color_id', 'project_id', 'user_id'];
+    protected $fillable = ['title', 'body', 'color_id', 'project_id', 'user_id', 'archived'];
 
     protected $primaryKey = 'id';
 

@@ -96,3 +96,8 @@
 .note-board .new-item:hover::before {
     opacity: 1;
 }
+
+
+.archived {
+    opacity: 0.5;
+}

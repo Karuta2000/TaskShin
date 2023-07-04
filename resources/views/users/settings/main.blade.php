@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1>Settings</h1>
+    <h1>User settings</h1>
 
     @livewire('app.settings.main')
 

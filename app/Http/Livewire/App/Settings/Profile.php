@@ -12,16 +12,20 @@ class Profile extends Component
 
     public $profile;
 
+    public $content;
+
     protected function rules()
     {
         return [
-            'profile.banner' => 'required',
+            'profile.banner' => 'nullable',
             'profile.sex' => Rule::in(['Male', 'Female']),
             'profile.description' => 'nullable',
             'profile.birthday' => 'nullable|date',
             'profile.color_id' => 'required|numeric',
         ];
     }
+
+    protected $listeners = ['editorUpdated'];
 
     public function render()
     {
@@ -30,11 +34,20 @@ class Profile extends Component
 
     public function mount(){
         $this->profile = ProfileSettings::where('user_id', Auth::id())->first();
+        $this->content = $this->profile->description;
     }
 
     public function save(){
         $this->validate();
         $this->profile->save();
         $this->emit('successMessage', 'Profile saved successfully.');
+    }
+
+
+
+    public function editorUpdated($value)
+    {
+        $this->profile->description = $value;
+        $this->emit('successMessage', 'Test successful.');
     }
 }

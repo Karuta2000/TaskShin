@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProfileSettings;
 use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Task;
@@ -64,6 +65,12 @@ class UserController extends Controller
                 $preferences = new UserPreferences;
                 $preferences->user_id = Auth::id();
                 $preferences->save();
+            }
+
+            if(Auth::user()->profile == null){
+                $profile = new ProfileSettings();
+                $profile->user_id = Auth::id();
+                $profile->save();
             }
 
 
