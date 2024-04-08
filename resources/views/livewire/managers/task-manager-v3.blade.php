@@ -20,8 +20,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="row container-fluid" style="height: 800px">
         <div class="task-board col-2">
             <div class="task-board-title"></div>

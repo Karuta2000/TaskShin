@@ -1,16 +1,37 @@
 .task-board {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: inline;
   gap: 20px;
+  width: 320px;
+  max-height: 700px;
+  padding: 0;
+  margin-bottom: 20px;
 }
 
-.task-board .board-item {
+.task-board-title {
+  padding: 15px;
+  background-color: #ffffffee;
+  font-weight: bold;
+}
+
+.task-board-body {
+  overflow-y: auto;
+  display: block;
   position: relative;
   width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: #ffffff99;
+}
+
+.task-board-body .board-item {
+  position: relative;
+  display: block;
+  width: 100%;
   height: 0;
-  padding-bottom: 80%; /* Increased height */
+  padding-bottom: 70%; /* Increased height */
   overflow: hidden;
   backdrop-filter: blur(40px);
+  margin-bottom: 20px;
 }
 
 .board-item .task-card{
